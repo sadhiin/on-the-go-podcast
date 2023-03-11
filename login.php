@@ -21,6 +21,7 @@ function take_input($d)
     return $d;
 }
 $username = $usernameErr = $emailadd = $emailErr = $pass = $passErr = "";
+$isValid = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
     if (empty($_REQUEST["username"])) {
@@ -45,6 +46,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
         // if (!preg_match("/^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", $pass)) {
         //     $passErr = "Passwoed must contain spacial carecter [@,!,#,$,%]";
         // }
+    }
+
+    if ($isValid) {
+        $data = json_decode(file_get_contents('data.json'), true);
+
+        if (is_array($data)) {
+            $message = "User not found";
+
+            foreach ($data as $key => $value) {
+                if ($value['username'] == $_POST['username']) {
+                    if ($value['password'] == $_POST['password']) {
+                        $_SESSION['data'] = $value;
+                        $_SESSION['username'] = $username;
+                        header("location: dashboard.php");
+                    } else {
+                        $message = "Password does not match";
+                    }
+                }
+            }
+        } else {
+            $message = "User not found";
+        }
     }
     // echo "username: ".$_REQUEST['user']."<br> password: ".$_REQUEST["pass"]."<br> remeber: ".$_REQUEST['remember'];
     // have to run the sql query for the vefiying the user information
