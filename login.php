@@ -20,7 +20,7 @@ function take_input($d)
     $d = htmlspecialchars($d);
     return $d;
 }
-$username = $usernameErr = $emailadd = $emailErr = $pass = $passErr = "";
+$username = $usernameErr = $email = $emailErr = $pass = $passErr = "";
 $isValid = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
         $usernameErr = "Username or email required";
     } else {
         $username = take_input($_REQUEST["username"]);
-        $emailadd = take_input($_REQUEST['username']);
+        //$email = take_input($_REQUEST["email"]);
 
         // no need to validathe username also
         // if ((!preg_match("/^[a-zA-Z0-9]+(?:[\w -]*[a-zA-Z0-9]+)*$/", $username)) && strlen($username) > 2) {
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
 
             foreach ($data as $key => $value) {
                 if ($value['username'] == $_POST['username']) {
-                    if ($value['password'] == $_POST['password']) {
+                    if ($value['pass'] == $_POST['pass']) {
                         $_SESSION['data'] = $value;
                         $_SESSION['username'] = $username;
                         header("location: dashboard.php");
