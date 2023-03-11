@@ -73,7 +73,6 @@ include "./includes/header.php";
 dynamically update the creators info -->
 
 
-<!-- Carousel wrapper -->
 <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-mdb-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -146,7 +145,6 @@ dynamically update the creators info -->
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<!-- Carousel wrapper -->
 
 <?php
 echo "<center>";
