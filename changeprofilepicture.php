@@ -34,7 +34,7 @@
 
 	<div>
 		<fieldset>
-			<form>
+			<form method="post" action="picupload.php" enctype="multipart/form-data">
 				<div>
 					<table>
 						<tr>
@@ -50,7 +50,18 @@
 									<li><a href="Logout.php">Logout</a></li>
 								</ul>
 							</td>
-							<td class="center" style="width: 1000px; font-size: 30px; text-align: center; vertical-align: text-top;">Welcome to FAITH IT <b><?php echo $_SESSION['username']; ?></b><br><br><img src="<?= $_SESSION['data']['profilepicpath'] ?>" height="155" width="155"></td>
+
+							<td class="center">
+								<fieldset>
+									<legend><b>Profile Picture</b></legend>
+
+									<img src="<?= $_SESSION['data']['profilepicpath'] ?>" height="200px" width="200px"> <br>
+									<input type="file" name="file_to_upload" value="Choose a file"> <br>
+									<hr> <br>
+									<input type="submit" name="submit">
+
+								</fieldset>
+							</td>
 						</tr>
 					</table>
 				</div>
