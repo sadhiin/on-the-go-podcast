@@ -93,6 +93,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
         echo "<p>You have suggessfull sign up</p>";
         echo "</div>";
     }
+
+    // if ($VALIDINPUT=true) {
+    //     $set = [
+    //         'name'		=>    $_POST["name"],
+    //             'email'		=>    $_POST["email"],
+    //             'username'	=>	  $_POST["username"],
+    //             'pass'	    =>	  $_POST["pass"],
+    //             'phone'		=>	  $_POST["phone"],
+    //         'profilepicpath'=> 'profilepic/1.jpg'];
+
+    //     if (!file_exists('data.json')) {
+    //         @file_put_contents('data.json', '');
+    //     }
+
+    //     $data = json_decode(file_get_contents('data.json'), true);
+
+    //     foreach ($data as $key => $value) {
+    //         if ($value['email'] == $_POST['email'] && $value['username'] == $_POST['username']) {
+    //             $userExist = "User Already Exist!";
+    //             break;
+    //         }
+    //     }
+    //     if (empty($userExist)) {
+    //         $data[] = $set;
+    //         file_put_contents('data.json', json_encode($data));
+    //         header('Location: login.php');
+    //     }
+    // }
+
+    if ($VALIDINPUT=true) {
+
+        if (file_exists('data.json')) {
+
+            $current_data = file_get_contents('data.json');
+
+            $array_data = json_decode($current_data, true);
+            @$new_data = [
+                'name'		=>    $_POST["name"],
+                'email'		=>    $_POST["email"],
+                'username'	=>	  $_POST["username"],
+                'pass'	    =>	  $_POST["pass"],
+                'phone'		=>	  $_POST["phone"],
+                
+            ];
+            $array_data[] = $new_data;
+            $final_data = json_encode($array_data);
+
+            if (file_put_contents('data.json', $final_data)) {
+                $message = "<label class='text-success'>File Appended Successfully</p>";
+            }
+        } else {
+            $error = 'JSON File does not exits';
+        }
+    }
 }
 ?>
 
@@ -113,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="name" id="name" class="form-control" />
+                                            <input type="text" name="name" id="name" value="<?php echo $name; ?>" class="form-control" />
                                             <label class="form-label" for="name">Your Name</label>
                                             <span class="error">*
                                                 <?php echo $nameErr; ?>
@@ -124,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="username" id="username" class="form-control" />
+                                            <input type="text" name="username" id="username" value="<?php echo $username; ?>" class="form-control" />
                                             <label class="form-label" for="username">Username</label>
                                             <span class="error">*
                                                 <?php echo $usernameErr; ?>
@@ -134,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="email" id="form3Example3c" class="form-control" />
+                                            <input type="text" name="email" id="form3Example3c" value="<?php echo $email; ?>" class="form-control" />
                                             <label class="form-label" for="form3Example3c">Your Email</label>
                                             <span class="error">*
                                                 <?php echo $emailErr; ?>
@@ -145,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="phone" name="contract" id="contract" class="form-control" placeholder="8801*********" />
+                                            <input type="phone" name="contract" id="contract" value="<?php echo $phone; ?>"class="form-control" placeholder="8801*********" />
 
                                             <label class="form-label" for="contract">Phone Number</label>
                                             <span class="error">*
