@@ -20,14 +20,15 @@ function take_input($d)
     $d = htmlspecialchars($d);
     return $d;
 }
-$username = $usernameErr = $emailadd = $emailErr = $pass = $passErr = "";
+$username = $usernameErr = $email = $emailErr = $pass = $passErr = "";
+$isValid = true;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
     if (empty($_REQUEST["username"])) {
         $usernameErr = "Username or email required";
     } else {
         $username = take_input($_REQUEST["username"]);
-        $emailadd = take_input($_REQUEST['username']);
+        //$email = take_input($_REQUEST["email"]);
 
         // no need to validathe username also
         // if ((!preg_match("/^[a-zA-Z0-9]+(?:[\w -]*[a-zA-Z0-9]+)*$/", $username)) && strlen($username) > 2) {
@@ -45,6 +46,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
         // if (!preg_match("/^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", $pass)) {
         //     $passErr = "Passwoed must contain spacial carecter [@,!,#,$,%]";
         // }
+    }
+
+    if ($isValid) {
+        $data = json_decode(file_get_contents('data.json'), true);
+
+        if (is_array($data)) {
+            $message = "User not found";
+
+            foreach ($data as $key => $value) {
+                if ($value['username'] == $_POST['username']) {
+                    if ($value['pass'] == $_POST['pass']) {
+                        $_SESSION['data'] = $value;
+                        $_SESSION['username'] = $username;
+                        header("location: dashboard.php");
+                    } else {
+                        $message = "Password does not match";
+                    }
+                }
+            }
+        } else {
+            $message = "User not found";
+        }
     }
     // echo "username: ".$_REQUEST['user']."<br> password: ".$_REQUEST["pass"]."<br> remeber: ".$_REQUEST['remember'];
     // have to run the sql query for the vefiying the user information
