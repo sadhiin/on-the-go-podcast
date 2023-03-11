@@ -18,8 +18,7 @@
     <!-- own style sheet -->
     <link rel="stylesheet" href="./includes/CSS/style.css">
     <!-- fontawesome kit -->
-    <link rel="stylesheet" href="https://kit.fontawesome.com/4db96eb076.css" crossorigin="anonymous">
-
+    <script src="https://kit.fontawesome.com/4db96eb076.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
