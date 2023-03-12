@@ -1,7 +1,6 @@
 <?php
-$logofile = "./logo.php";
-$title = "On-the-Go Home";
-include "./includes/header.php";
+    $title = "On-the-Go Home";
+    include "./includes/header.php";
 ?>
 <!-- tag lines -->
 <!-- "Listen to the voices that matter: Tune in to our podcast today!"
@@ -31,7 +30,7 @@ include "./includes/header.php";
                 <img src="./images/img6.jpg" width="1500" height="600" alt="image-1">
 
                 <div class="carousel-caption d-none d-md-block">
-                    <p class="text-info">Listen to the voices that matter: Tune in to our podcast today!</p>
+                    <h5 class="text-primary">Listen to the voices that matter: Tune in to our podcast today!</h5>
                 </div>
             </div>
 
@@ -39,7 +38,7 @@ include "./includes/header.php";
                 <img src="./images/img2.jpg" width="1500" height="600" alt="image-1">
 
                 <div class="carousel-caption d-none d-md-block">
-                    <p class="text-info"> Get inspired, entertained, and informed with our podcast </p>
+                    <h5 class="text-info"> Get inspired, entertained, and informed with our podcast </h5>
                 </div>
             </div>
 
@@ -47,7 +46,7 @@ include "./includes/header.php";
                 <img src="./images/img4.jpg" width="1500" height="600" alt="image-1">
 
                 <div class="carousel-caption d-none d-md-block">
-                    <p class="text-info"> From thought-provoking interviews to hilarious banter, our podcast has it all</p>
+                    <h5 class="text-info"> From thought-provoking interviews to hilarious banter, our podcast has it all</h5>
                 </div>
             </div>
 
@@ -147,7 +146,7 @@ dynamically update the creators info -->
 </div>
 
 <?php
-echo "<center>";
-include "./includes/footer.php";
-echo "</center>";
+    echo "<center>";
+    include "./includes/footer.php";
+    echo "</center>";
 ?>

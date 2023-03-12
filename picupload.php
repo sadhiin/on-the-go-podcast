@@ -3,6 +3,7 @@
 session_start();
 $target_dir = "upload/";
 if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
+
   $ext = substr($_FILES['file_to_upload']['name'], strlen($_FILES['file_to_upload']['name']) - 4, 4);
   if (strtolower($ext) == 'jpeg') {
     $ext = substr($_FILES['file_to_upload']['name'], strlen($_FILES['file_to_upload']['name']) - 5, 5);
@@ -23,8 +24,6 @@ if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
           'email'           => $_SESSION['data']['email'],
           'username'        => $_SESSION['data']['username'],
           'password'        => $_SESSION['data']['password'],
-          'gender'          => $_SESSION['data']['gender'],
-          'dob'             => $_SESSION['data']['dob'],
           'profilepicpath'  => $moving_path
         ];
         $_SESSION['data'] = $set;
@@ -41,4 +40,3 @@ if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
 } else {
   echo 'uploaded file not a image';
 }
-?>

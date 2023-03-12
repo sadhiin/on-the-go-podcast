@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
+<?php
+	session_start();
+	$title = "Dashboard";
+	include "./includes/header.php";
+?>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dashboard</title>
+
 	<style>
 		.center {
 			margin: auto;
@@ -13,24 +13,15 @@
 			padding: 10px;
 		}
 	</style>
-</head>
 
-<body>
 
 	<?php
-	session_start();
-
-	if (isset($_SESSION['username'])) {
-	} else {
-		header("location:login.php");
-	}
+		if (isset($_SESSION['username'])) {
+		} else {
+			header("location:login.php");
+		}
 	?>
 
-	<div>
-		<?php include 'header.php'; ?>
-	</div>
-
-	<br>
 
 	<div>
 		<fieldset>
@@ -60,9 +51,6 @@
 
 	<br>
 
-	<div>
-		<?php include 'footer.php'; ?>
-	</div>
-</body>
-
-</html>
+<?php
+	include "./includes/footer.php";
+?>

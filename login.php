@@ -1,6 +1,5 @@
 <?php
 
-$logofile = "./logo.php";
 $title = "On-the-Go Home";
 include "./includes/header.php";
 ?>
@@ -98,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
                 <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <!-- Email input -->
                     <div class="form-floating mb-3">
-                        <input type="text" name="user" class="form-control" id="floatingInput" placeholder="Password">
+                        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Password">
                         <label for="floatingInput">Username or Email</label>
                         <span class="error">*
                             <?php echo $usernameErr; ?>

@@ -1,16 +1,13 @@
 <?php
-$logofile = "./logo.php";
-$title = "On-the-Go Home";
-include "./includes/header.php";
+    $title = "About-Us";
+    include "./includes/header.php";
 ?>
 <section>
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-xl-8 text-center">
-            <h3 class="mb-4">Testimonials</h3>
+            <h3 class="mb-4">Our Team</h3>
             <p class="mb-4 pb-2 mb-md-5 pb-md-0">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
-                numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
-                quisquam eum porro a pariatur veniam.
+            As developers, we are both creators and problem solvers. We have the power to bring ideas to life and to build innovative solutions that can change the world. We are part of a community that values creativity, collaboration, and continuous learning.
             </p>
         </div>
     </div>
@@ -36,7 +33,7 @@ include "./includes/header.php";
             <div class="card testimonial-card">
                 <div class="card-up" style="background-color: #7a81a8;"></div>
                 <div class="avatar mx-auto bg-white">
-                    <img src="./images/sadhin.jpg" class="rounded-circle img-fluid" />
+                    <img src="./images/profile.png" class="rounded-circle img-fluid" />
                 </div>
                 <div class="card-body">
                     <h4 class="mb-4">Shanjidul Islam Sadhin</h4>
@@ -48,12 +45,12 @@ include "./includes/header.php";
                 </div>
             </div>
         </div>
-    
+
     </div>
 </section>
 
 <?php
-echo "<center>";
-include "./includes/footer.php";
-echo "</center>";
+    echo "<center>";
+    include "./includes/footer.php";
+    echo "</center>";
 ?>

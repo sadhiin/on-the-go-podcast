@@ -1,32 +1,28 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dashboard</title>
-	<style>
-		.center {
-			margin: auto;
-			width: 60%;
-			border: 3px solid #73AD21;
-			padding: 10px;
-		}
-	</style>
-</head>
-
-<body>
-
-	<?php
+<?php
 	session_start();
+	$title = "Dashboard";
+	include "./includes/header.php";
+?>
 
+
+<style>
+	.center {
+		margin: auto;
+		width: 60%;
+		border: 3px solid #73AD21;
+		padding: 10px;
+	}
+</style>
+
+
+<?php
 	if (isset($_SESSION['username'])) {
 	} else {
 		header("location:login.php");
 	}
-	?>
+?>
 
-	<?php
+<?php
 
 	$currentpassword = $newpassword = $retypepassword = "";
 	$currentpasswordErr = $newpasswordErr = $retypepasswordErr = "";
@@ -99,79 +95,69 @@
 			}
 		}
 	}
-	?>
+?>
 
-	<div>
-		<?php include 'header.php'; ?>
-	</div>
+<div>
+	<fieldset>
+		<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+			<div>
+				<table>
+					<tr>
+						<td style="width: 300px;">
+							<label><b>Account</b></label>
+							<hr> <br>
+							<ul>
+								<li><a href="dashboard.php">Dashboard</a></li>
+								<li><a href="viewprofile.php">View Profile</a></li>
+								<li><a href="editprofile.php">Edit Profile</a></li>
+								<li><a href="changeprofilepicture.php">Change Profile Picture</a></li>
+								<li><a href="changepassword.php">Change Password</a></li>
+								<li><a href="Logout.php">Logout</a></li>
+							</ul>
+						</td>
 
-	<br>
+						<td class="center">
+							<fieldset>
 
-	<div>
-		<fieldset>
-			<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-				<div>
-					<table>
-						<tr>
-							<td style="width: 300px;">
-								<label><b>Account</b></label>
-								<hr> <br>
-								<ul>
-									<li><a href="dashboard.php">Dashboard</a></li>
-									<li><a href="viewprofile.php">View Profile</a></li>
-									<li><a href="editprofile.php">Edit Profile</a></li>
-									<li><a href="changeprofilepicture.php">Change Profile Picture</a></li>
-									<li><a href="changepassword.php">Change Password</a></li>
-									<li><a href="Logout.php">Logout</a></li>
-								</ul>
-							</td>
+								<legend>
+									<h2>Change Password</h2>
+								</legend>
 
-							<td class="center">
-								<fieldset>
+								<table>
 
-									<legend>
-										<h2>Change Password</h2>
-									</legend>
+									<tr>
+										<td>Current Password</td>
+										<td>:</td>
+										<td><input type="text" name="currentpassword" value="<?php echo $currentpassword; ?>">
+									</tr>
 
-									<table>
+									<tr>
+										<td>New Password</td>
+										<td>:</td>
+										<td><input type="text" name="newpassword" value="<?php echo $newpassword; ?>"><span class="red">*<?php echo $newpasswordErr; ?></span></td>
+									</tr>
 
-										<tr>
-											<td>Current Password</td>
-											<td>:</td>
-											<td><input type="text" name="currentpassword" value="<?php echo $currentpassword; ?>">
-										</tr>
+									<tr>
+										<td>Retype New Password</td>
+										<td>:</td>
+										<td><input type="text" name="retypepassword" value="<?php echo $retypepassword; ?>"><span class="red">*<?php echo $retypepasswordErr ?></span></td>
+									</tr>
+								</table>
 
-										<tr>
-											<td>New Password</td>
-											<td>:</td>
-											<td><input type="text" name="newpassword" value="<?php echo $newpassword; ?>"><span class="red">*<?php echo $newpasswordErr; ?></span></td>
-										</tr>
+								<hr>
 
-										<tr>
-											<td>Retype New Password</td>
-											<td>:</td>
-											<td><input type="text" name="retypepassword" value="<?php echo $retypepassword; ?>"><span class="red">*<?php echo $retypepasswordErr ?></span></td>
-										</tr>
-									</table>
+								<input type="submit" name="submit">
 
-									<hr>
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</fieldset>
+</div>
 
-									<input type="submit" name="submit">
-
-								</fieldset>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</form>
-		</fieldset>
-	</div>
-
-	<br>
-
-	<div>
-		<?php include 'footer.php'; ?>
-	</div>
-</body>
-
-</html>
+<br>
+<?php
+	include "./includes/footer.php";
+?>
