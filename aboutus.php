@@ -1,6 +1,10 @@
 <?php
     $title = "About-Us";
-    include "./includes/header.php";
+    // if (isset($_SESSION['username']) && $_SESSION['username']!= null) {
+	// 	include "./includes/header_logeding.php";
+	// } else {
+		include "./includes/header.php";
+	// }
 ?>
 <section>
     <div class="row d-flex justify-content-center">

@@ -1,7 +1,11 @@
 <?php
 	session_start();
 	$title = "Dashboard";
-	include "./includes/header.php";
+	if (isset($_SESSION['username'])) {
+		include "./includes/header_logeding.php";
+	} else {
+		include "./includes/header.php";
+	}
 ?>
 
 
@@ -41,7 +45,7 @@
 									<li><a href="Logout.php">Logout</a></li>
 								</ul>
 							</td>
-							<td class="center" style="width: 1000px; font-size: 30px; text-align: center; vertical-align: text-top;">Welcome to FAITH IT <b><?php echo $_SESSION['username']; ?></b><br><br><img src="<?= $_SESSION['data']['profilepicpath'] ?>" height="155" width="155"></td>
+							<!-- <td class="center" style="width: 1000px; font-size: 30px; text-align: center; vertical-align: text-top;">Welcome to FAITH IT <b><?php echo $_SESSION['username']; ?></b><br><br><img src="<?= $_SESSION['data']['profilepicpath'] ?>" height="155" width="155"></td> -->
 						</tr>
 					</table>
 				</div>

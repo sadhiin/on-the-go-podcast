@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+if (isset($_SESSION['username'])) {
+  include "./includes/header_logeding.php";
+} else {
+  include "./includes/header.php";
+}
 $target_dir = "upload/";
 if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
 

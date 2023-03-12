@@ -1,7 +1,12 @@
 <?php
 	session_start();
 	$title = "Dashboard";
-	include "./includes/header.php";
+
+	if (isset($_SESSION['username'])) {
+		include "./includes/header_logeding.php";
+	} else {
+		include "./includes/header.php";
+	}
 ?>
 
 

@@ -1,6 +1,11 @@
 <?php
+    session_start();
     $title = "On-the-Go Home";
-    include "./includes/header.php";
+    if (isset($_SESSION['username'])) {
+		include "./includes/header_logeding.php";
+	} else {
+		include "./includes/header.php";
+	}
 ?>
 <!-- tag lines -->
 <!-- "Listen to the voices that matter: Tune in to our podcast today!"

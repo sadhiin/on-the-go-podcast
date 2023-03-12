@@ -34,7 +34,14 @@
                     <a class="nav-link" aria-current="page" href="./index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./dashboard.php">Dashboard</a>
+                    <a class="nav-link" aria-current="page" href="./dashboard.php">
+                    <?php
+                        if (isset($_SESSION['username'])) {
+                            echo "Welcome ".$_SESSION['username'];
+                        }
+                    ?>
+                    </a>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="./logout.php">Logout</a>

@@ -1,6 +1,12 @@
 <?php
-$title = "View Profile";
-include "./includes/header.php";
+	session_start();
+	$title = "View Profile";
+
+	if (isset($_SESSION['username'])) {
+		include "./includes/header_logeding.php";
+	} else {
+		include "./includes/header.php";
+	}
 ?>
 
 <style>
@@ -38,7 +44,6 @@ include "./includes/header.php";
 								</legend>
 								<table>
 									<?php
-									session_start();
 
 									if (isset($_SESSION['username'])) {
 									} else {
@@ -55,17 +60,6 @@ include "./includes/header.php";
 									<tr>
 										<td width="25%">Email</td>
 										<td><span>:</span><?= $_SESSION['data']['email'] ?></td>
-									</tr>
-
-									<tr>
-										<td width="25%">Gender</td>
-										<td><span>:</span><?= $_SESSION['data']['gender'] ?></td>
-									</tr>
-
-									<tr>
-										<td width="25%">Date of Birth</td>
-										<td><span>:</span><?= $_SESSION['data']['dob'] ?></td>
-										<td align="center"><a href="changeprofilepicture.php">Change</a></td>
 									</tr>
 
 

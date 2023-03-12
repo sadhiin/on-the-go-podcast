@@ -1,7 +1,11 @@
 <?php
 	session_start();
 	$title = "About-Us";
-	include "./includes/header.php";
+	if (isset($_SESSION['username'])) {
+		include "./includes/header_logeding.php";
+	} else {
+		include "./includes/header.php";
+	}
 ?>
 
 <style type="text/css">
@@ -136,7 +140,7 @@
 										<td>:</td>
 										<td><input type="text" name="email" value="<?= $_SESSION['data']['email'] ?>"><span style="red">*<?php echo $emailErr ?></span></td>
 									</tr>
-
+<!--
 									<tr>
 										<td>Gender</td>
 										<td>:</td>
@@ -151,13 +155,13 @@
 														echo 'checked="checked"';
 													} ?> type="radio" name="gender" value="other" id="other"> <label for="other">Others</label>
 										</td>
-									</tr>
+									</tr> -->
 
-									<tr>
+									<!-- <tr>
 										<td>Date of Birth</td>
 										<td>:</td>
 										<td><input type="date" name="dob" value="<?= $_SESSION['data']['dob'] ?>"><span style="red">*<?php echo $dobErr ?></span></td>
-									</tr>
+									</tr> -->
 
 								</table>
 								<input type="submit" name="submit" value="Submit">

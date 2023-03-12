@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $title = "On-the-Go Home";
 include "./includes/header.php";
@@ -28,23 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
     } else {
         $username = take_input($_REQUEST["username"]);
         //$email = take_input($_REQUEST["email"]);
-
-        // no need to validathe username also
-        // if ((!preg_match("/^[a-zA-Z0-9]+(?:[\w -]*[a-zA-Z0-9]+)*$/", $username)) && strlen($username) > 2) {
-        //     $usernameErr = "Only Alpha numaric and space and dash allowed";
-        // }
     }
 
     // password validaton
-    if (empty($_REQUEST['pass'])) {
+    if (empty($_REQUEST['password'])) {
         $passErr = "Password can not be empty.";
     } else {
-        $pass = $_REQUEST['pass'];
-
-        // no need to validate passworrd here.
-        // if (!preg_match("/^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", $pass)) {
-        //     $passErr = "Passwoed must contain spacial carecter [@,!,#,$,%]";
-        // }
+        $pass = $_REQUEST['password'];
     }
 
     if ($isValid) {
@@ -55,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
 
             foreach ($data as $key => $value) {
                 if ($value['username'] == $_POST['username']) {
-                    if ($value['pass'] == $_POST['pass']) {
+                    if ($value['password'] == $_POST['password']) {
                         $_SESSION['data'] = $value;
                         $_SESSION['username'] = $username;
                         header("location: dashboard.php");
@@ -67,6 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
         } else {
             $message = "User not found";
         }
+        echo '<div class="alert alert-danger" role="alert">';
+        echo '<h4 class="alert-heading">'.$message. '</h4>';
+        echo "</div>";
     }
     // echo "username: ".$_REQUEST['user']."<br> password: ".$_REQUEST["pass"]."<br> remeber: ".$_REQUEST['remember'];
     // have to run the sql query for the vefiying the user information
@@ -106,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
 
                     <!-- Password input -->
                     <div class="form-floating">
-                        <input type="password" name="pass" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
                         <label for="floatingPassword">Password</label>
                         <span class="error">*
                             <?php echo $passErr; ?>
