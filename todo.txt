@@ -1,0 +1,6 @@
+nva bar
+MVC
+create db
+desing on undesined pages
+create page of dashborard
+after logedin homepage
