@@ -1,4 +1,7 @@
 nva bar [done]
+eidt profile
+    change name [done]
+    change profilepicture 
 MVC
     validation
     database

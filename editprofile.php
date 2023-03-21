@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</div>
 						<div class="about">
 							<h5>About</h5>
-							<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur earum, temporibus quam suscipit autem perferendis neque, ea, delectus fugiat dolore et? Quasi itaque maxime magnam dignissimos voluptatum id rem ipsum.</p>
 						</div>
 					</div>
 				</div>
