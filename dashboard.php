@@ -25,8 +25,7 @@
 			header("location:login.php");
 		}
 	?>
-
-
+	
 	<div>
 		<fieldset>
 			<form>

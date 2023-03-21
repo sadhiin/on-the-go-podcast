@@ -1,5 +1,8 @@
-nva bar
+nva bar [done]
 MVC
+    validation
+    database
+    ....
 create db
 desing on undesined pages
 create page of dashborard

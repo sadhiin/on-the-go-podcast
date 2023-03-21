@@ -49,9 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
                     if ($value['password'] == $_POST['password']) {
                         $_SESSION['data'] = $value;
                         $_SESSION['username'] = $username;
+                        
                         header("location: dashboard.php");
                     } else {
                         $message = "Password does not match";
+                        break;
                     }
                 }
             }

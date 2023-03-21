@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="text" name="name" id="name" value="<?php if($VALIDINPUT==false) {echo $name;} ?>" class="form-control" />
-                                            <label class="form-label" for="name">Your Name</label>
+                                            <label class="form-label" for="name">Your Full Name</label>
                                             <span class="error">*
                                                 <?php echo $nameErr; ?>
                                             </span>

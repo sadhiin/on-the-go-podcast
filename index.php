@@ -150,7 +150,13 @@ dynamically update the creators info -->
     </button>
 </div>
 
+
+
+
 <?php
+
+
+    echo "<br>";
     echo "<center>";
     include "./includes/footer.php";
     echo "</center>";

@@ -22,8 +22,8 @@
 </head>
 
 <body>
-    
-    <nav class="navbar bg-body-tertiary">
+
+    <!-- <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand brand" href="./index.php">
                 <img src="./includes/logo.png" alt="Logo" width="40" height="35" class="d-inline-block align-text-top">
@@ -45,4 +45,28 @@
             </ul>
         </div>
     </nav>
-    <hr>
+    <hr> -->
+
+
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+            <a class="navbar-brand brand" href="./index.php">
+                <img src="./includes/logo.png" alt="Logo" width="40" height="35" class="d-inline-block align-text-top">
+                On-The-Go Podcast
+            </a>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="./index.php" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#carouselExampleControls" class="nav-link px-2 link-dark">Creators</a></li>
+                <!-- <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li> -->
+                <li><a href="./aboutus.php" class="nav-link px-2 link-dark">About</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn btn-outline-primary me-2" onclick="window.location.href='./login.php';">Login</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='./registation.php';">Sign-up</button>
+
+            </div>
+        </header>
+    </div>
