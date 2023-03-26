@@ -1,17 +1,19 @@
 <?php
-    $title = "About-Us";
-    // if (isset($_SESSION['username']) && $_SESSION['username']!= null) {
-	// 	include "./includes/header_logeding.php";
-	// } else {
-		include "./includes/header.php";
-	// }
+session_start();
+$title = "About-Us";
+
+if (isset($_SESSION['username'])) {
+    include "./includes/header_logeding.php";
+} else {
+    include "./includes/header.php";
+}
 ?>
 <section>
     <div class="row d-flex justify-content-center">
         <div class="col-md-10 col-xl-8 text-center">
             <h3 class="mb-4">Our Team</h3>
             <p class="mb-4 pb-2 mb-md-5 pb-md-0">
-            As developers, we are both creators and problem solvers. We have the power to bring ideas to life and to build innovative solutions that can change the world. We are part of a community that values creativity, collaboration, and continuous learning.
+                As developers, we are both creators and problem solvers. We have the power to bring ideas to life and to build innovative solutions that can change the world. We are part of a community that values creativity, collaboration, and continuous learning.
             </p>
         </div>
     </div>
@@ -54,7 +56,7 @@
 </section>
 
 <?php
-    echo "<center>";
-    include "./includes/footer.php";
-    echo "</center>";
+echo "<center>";
+include "./includes/footer.php";
+echo "</center>";
 ?>

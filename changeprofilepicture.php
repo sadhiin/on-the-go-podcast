@@ -55,7 +55,7 @@ if (isset($_SESSION['username'])) {
 								<input type="file" name="file_to_upload" value="Choose a file"> <br>
 								<hr> <br>
 								<input type="submit" name="submit">
-
+								
 							</fieldset>
 						</td>
 					</tr>

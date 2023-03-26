@@ -140,28 +140,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 										<td>:</td>
 										<td><input type="text" name="email" value="<?= $_SESSION['data']['email'] ?>"><span style="red">*<?php echo $emailErr ?></span></td>
 									</tr>
-									<!--
-									<tr>
-										<td>Gender</td>
-										<td>:</td>
-										<td>
-											<input <?php if ($_SESSION['data']['gender'] == 'male') {
-														echo 'checked="checked"';
-													} ?> type="radio" name="gender" value="male" id="male"> <label for="male">Male</label>
-											<input <?php if ($_SESSION['data']['gender'] == 'female') {
-														echo 'checked="checked"';
-													} ?> type="radio" name="gender" value="female" id="female"> <label for="female">Female</label>
-											<input <?php if ($_SESSION['data']['gender'] == 'other') {
-														echo 'checked="checked"';
-													} ?> type="radio" name="gender" value="other" id="other"> <label for="other">Others</label>
-										</td>
-									</tr> -->
 
-									<!-- <tr>
-										<td>Date of Birth</td>
-										<td>:</td>
-										<td><input type="date" name="dob" value="<?= $_SESSION['data']['dob'] ?>"><span style="red">*<?php echo $dobErr ?></span></td>
-									</tr> -->
+
 
 								</table>
 								<input type="submit" name="submit" value="Submit">
@@ -189,13 +169,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<div class="account-settings">
 						<div class="user-profile">
 							<div class="user-avatar">
-								<!-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="300" height="300" alt="Maxwell Admin"> -->
-								<img src="<?php echo $_SESSION['data']['profilepicpath'] ?>" width="280" height="280" alt="<?php echo $_SESSION['data']['name'] ?>" >
+								<form method="post" action="picupload.php" enctype="multipart/form-data">
+									<img src="<?php echo $_SESSION['data']['profilepicpath'] ?>" width="280" height="280" alt="<?php echo $_SESSION['data']['name'] ?>">
+									<!-- change profilepicture -->
+									<br>
+									<input type="file" name="file_to_upload" value="Choose a file"> <br>
+									<input type="submit" name="submit">
 
-								<!-- change profilepicture -->
-								<br>
-								<input type="file" name="file_to_upload" value="Choose a file"> <br>
-								<hr> <br>
+								</form>
 							</div>
 							<h5 class="user-name"><?php echo $_SESSION['data']['name'] ?></h5>
 							<h6 class="user-email"><?php echo $_SESSION['data']['email'] ?></h6>
@@ -259,8 +240,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 							<div class="text-left">
 								<br>
-								<button type="button" id="submit" name="cancle" value="Cancel"class="btn btn-outline-danger">Cancel</button>
-								<button type="button" id="submit" name="submit" value="Update"class="btn btn-outline-primary">Update</button>
+								<button type="button" id="submit" name="cancle" value="Cancel" class="btn btn-outline-danger">Cancel</button>
+								<button type="button" id="submit" name="submit" value="Update" class="btn btn-outline-primary">Update</button>
 							</div>
 						</div>
 					</div>

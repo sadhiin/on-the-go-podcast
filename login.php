@@ -1,8 +1,11 @@
 <?php
 session_start();
 
-$title = "On-the-Go Home";
-include "./includes/header.php";
+    $title = "Login";
+    include "./includes/header.php";
+    if(isset($_SESSION['username'])){
+        header("location: dashboard.php");
+    }
 ?>
 <!-- login validation -->
 <style>
@@ -49,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
                     if ($value['password'] == $_POST['password']) {
                         $_SESSION['data'] = $value;
                         $_SESSION['username'] = $username;
-                        
+
                         header("location: dashboard.php");
                     } else {
                         $message = "Password does not match";

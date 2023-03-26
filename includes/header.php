@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?></title>
+    <title><?php echo $title ?> </title>
 
     <!-- Required Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -22,32 +22,6 @@
 </head>
 
 <body>
-
-    <!-- <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand brand" href="./index.php">
-                <img src="./includes/logo.png" alt="Logo" width="40" height="35" class="d-inline-block align-text-top">
-                On-The-Go Podcast
-            </a>
-            <ul class="nav justify-content-end header">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./aboutus.php">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./login.php">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./registation.php">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <hr> -->
-
-
     <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
@@ -58,15 +32,12 @@
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="./index.php" class="nav-link px-2 link-secondary">Home</a></li>
                 <li><a href="#carouselExampleControls" class="nav-link px-2 link-dark">Creators</a></li>
-                <!-- <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li> -->
                 <li><a href="./aboutus.php" class="nav-link px-2 link-dark">About</a></li>
             </ul>
 
             <div class="col-md-3 text-end">
                 <button type="button" class="btn btn-outline-primary me-2" onclick="window.location.href='./login.php';">Login</button>
                 <button type="button" class="btn btn-primary" onclick="window.location.href='./registation.php';">Sign-up</button>
-
             </div>
         </header>
     </div>

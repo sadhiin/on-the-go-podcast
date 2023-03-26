@@ -31,33 +31,6 @@
 </head>
 
 <body>
-
-    <!-- <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand brand" href="./index.php">
-                <img src="./includes/logo.png" alt="Logo" width="40" height="35" class="d-inline-block align-text-top">
-                On-The-Go Podcast
-            </a>
-            <ul class="nav justify-content-end header">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./dashboard.php">
-                    <?php
-                    if (isset($_SESSION['username'])) {
-                        echo "Welcome " . $_SESSION['username'];
-                    }
-                    ?>
-                    </a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./logout.php">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
     <header class="p-3 mb-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -67,18 +40,17 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="./index.php" class="nav-link px-2 link-secondary">Home</a></li>
+                    <li><a href="./index.php" class="nav-link">Home</a></li>
                     <li>
                         <a class="nav-link" aria-current="page" href="./dashboard.php">
                             <?php
                             if (isset($_SESSION['username'])) {
-                                echo "Welcome " . $_SESSION['username'];
+                                echo "Welcome " . $_SESSION['data']['name'];
                             }
                             ?>
                         </a>
                     </li>
-                    <!-- <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+                    <li><a href="./aboutus.php" class="nav-link ">About</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -89,10 +61,12 @@
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?php echo $_SESSION['data']['profilepicpath'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
-                    <!-- ignore this line error -->
+                    <!-- ignore this line
+                    error -->
                     <ul class="dropdown-menu text-small" style="">
+                        <li><a class="dropdown-item" href="./dashboard.php">Dashboard</a></li>
                         <li><a class="dropdown-item" href="./editprofile.php">Editprofile</a></li>
-                        <li><a class="dropdown-item" href="./viewprofile.php">Profile</a></li>
+                        <li><a class="dropdown-item" href="./viewprofile.php">View Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -102,5 +76,4 @@
             </div>
         </div>
     </header>
-
     <hr>
