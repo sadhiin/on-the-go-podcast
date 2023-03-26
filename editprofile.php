@@ -104,63 +104,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<div>
-	<fieldset>
-		<form>
-			<div>
-				<table>
-					<tr>
-						<td style="width: 300px;">
-							<label><b>Account</b></label>
-							<hr> <br>
-							<ul>
-								<li><a href="./dashboard.php">Dashboard</a></li>
-								<li><a href="./viewprofile.php">View Profile</a></li>
-								<li><a href="./editprofile.php">Edit Profile</a></li>
-								<li><a href="./changeprofilepicture.php">Change Profile Picture</a></li>
-								<li><a href="./changepassword.php">Change Password</a></li>
-								<li><a href="./logout.php">Logout</a></li>
-							</ul>
-						</td>
-
-						<td class="center">
-							<fieldset>
-								<legend>
-									<h2>Edit Profile</h2>
-								</legend>
-								<table>
-									<tr>
-										<td>Name</td>
-										<td>:</td>
-										<td><input type="text" name="name" value="<?= $_SESSION['data']['name'] ?>"><span style="red">*<?php echo $nameErr ?></span></td>
-									</tr>
-
-									<tr>
-										<td>Email</td>
-										<td>:</td>
-										<td><input type="text" name="email" value="<?= $_SESSION['data']['email'] ?>"><span style="red">*<?php echo $emailErr ?></span></td>
-									</tr>
-
-
-
-								</table>
-								<input type="submit" name="submit" value="Submit">
-							</fieldset>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</form>
-	</fieldset>
-</div>
-
-<br>
-
-<hr>
-<hr>
-<hr>
-
-
 <div class="container">
 	<div class="row gutters">
 		<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -210,9 +153,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<span class="red"><?php echo $emailErr ?></span>
 							</div>
 						</div>
-
-
 					</div>
+					
 					<div class="row gutters">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 							<h6 class="mt-3 mb-2 text-primary">Credential</h6>
@@ -250,11 +192,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</div>
 	</div>
 </div>
-
-
-<hr>
-<hr>
-<hr>
 
 
 <?php
