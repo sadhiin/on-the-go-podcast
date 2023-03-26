@@ -20,7 +20,7 @@ function take_input($d)
 }
 $VALIDINPUT = false;
 $name = $email = $username = $pass = $phone = "";
-$nameErr = $emailErr = $usernameErr = $passErr = $repasserr = $phoneerr = $genderErr = "";
+$nameErr = $emailErr = $usernameErr = $passErr = $repasserr = $phoneerr = $genderErr = $termErr = "";
 
 $canStore = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
@@ -82,13 +82,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
         //if we have 10 digits left, it's probably valid.
         if (strlen($justNums) == 11) $isPhoneNum = true;
     }
-
-    if (empty($nameErr) and empty($emailErr) and empty($usernameErr) and empty($passErr) and empty($phoneerr)) {
+    if (!isset($_POST['term'])) {
+        $termErr = "Terms & condition should be accepted";
+    }
+    if (empty($nameErr) and empty($emailErr) and empty($usernameErr) and empty($passErr) and empty($phoneerr) and empty($termErr)) {
         $VALIDINPUT = true;
     }
     if ($VALIDINPUT) {
         echo '<div class="alert alert-success" role="alert">';
-        echo '<h4 class="alert-heading">Well done! '.$name. '</h4>';
+        echo '<h4 class="alert-heading">Well done! ' . $name . '</h4>';
         echo "<p>You have suggessfull sign up</p>";
         echo "</div>";
     }
@@ -129,12 +131,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
 
             $array_data = json_decode($current_data, true);
             @$new_data = [
-                'name'		=>    $name,
-                'email'		=>    $email,
-                'username'	=>	  $username,
+                'name'        =>    $name,
+                'email'        =>    $email,
+                'username'    =>      $username,
                 'password'  =>    $pass,
-                'phone'		=>	  $phone,
-                "profilepicpath"=>"upload\/1678588594.png"
+                'phone'        =>      $phone,
+                "profilepicpath" => "upload\/1678588594.png"
                 // $name = $email = $username = $pass = $phone = "";
             ];
             $array_data[] = $new_data;
@@ -167,7 +169,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="name" id="name" value="<?php if($VALIDINPUT==false) {echo $name;} ?>" class="form-control" />
+                                            <input type="text" name="name" id="name" value="<?php if ($VALIDINPUT == false) {
+                                                                                                echo $name;
+                                                                                            } ?>" class="form-control" />
                                             <label class="form-label" for="name">Your Full Name</label>
                                             <span class="error">*
                                                 <?php echo $nameErr; ?>
@@ -178,7 +182,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="username" id="username" value="<?php if($VALIDINPUT==false) {echo $username;} ?>" class="form-control" />
+                                            <input type="text" name="username" id="username" value="<?php if ($VALIDINPUT == false) {
+                                                                                                        echo $username;
+                                                                                                    } ?>" class="form-control" />
                                             <label class="form-label" for="username">Username</label>
                                             <span class="error">*
                                                 <?php echo $usernameErr; ?>
@@ -188,7 +194,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="email" id="form3Example3c" value="<?php if($VALIDINPUT==false){echo $email;} ?>" class="form-control" />
+                                            <input type="text" name="email" id="form3Example3c" value="<?php if ($VALIDINPUT == false) {
+                                                                                                            echo $email;
+                                                                                                        } ?>" class="form-control" />
                                             <label class="form-label" for="form3Example3c">Your Email</label>
                                             <span class="error">*
                                                 <?php echo $emailErr; ?>
@@ -199,7 +207,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="phone" name="contract" id="contract" value="<?php if($VALIDINPUT==false) {echo $phone;} ?>"class="form-control" placeholder="8801*********" />
+                                            <input type="phone" name="contract" id="contract" value="<?php if ($VALIDINPUT == false) {
+                                                                                                            echo $phone;
+                                                                                                        } ?>" class="form-control" placeholder="8801*********" />
 
                                             <label class="form-label" for="contract">Phone Number</label>
                                             <span class="error">*
@@ -231,9 +241,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     </div>
 
                                     <div class="form-check d-flex justify-content-center mb-5">
-                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                                        <input class="form-check-input me-2" type="checkbox" name="term" value="" id="form2Example3c" />
                                         <label class="form-check-label" for="form2Example3">
-                                            I agree all statements in <a href="./aboutus.php">Terms of service</a>
+                                            I agree all statements in <a href="./aboutus.php">Terms of service </a><span class="error">*
+                                                <?php echo $termErr; ?>
+                                            </span>
                                         </label>
                                     </div>
 

@@ -4,7 +4,7 @@ session_start();
     $title = "Login";
     include "./includes/header.php";
     if(isset($_SESSION['username'])){
-        header("location: dashboard.php");
+        header("location: app.onthegopodcast.php");
     }
 ?>
 <!-- login validation -->
@@ -53,7 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
                         $_SESSION['data'] = $value;
                         $_SESSION['username'] = $username;
 
-                        header("location: dashboard.php");
+                        header("location: app.onthegopodcast.php");
+                        if(isset($_POST["remember"])){
+
+                            setcookie('username',$username, time() + (86400 * 30));
+                            setcookie('password',$pass, time() + (86400 * 30));
+                        }
                     } else {
                         $message = "Password does not match";
                         break;
@@ -133,7 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
         </div>
     </div>
 </section>
-
 
 <!-- Footer of the page -->
 <?php

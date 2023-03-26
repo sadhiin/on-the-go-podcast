@@ -22,6 +22,7 @@ if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
 
 
     foreach ($data as $key => $value) {
+      
       if ($value['username'] ==  $_SESSION['data']['username']) {
 
         $set = [

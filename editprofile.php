@@ -7,7 +7,12 @@ if (isset($_SESSION['username'])) {
 	include "./includes/header.php";
 }
 ?>
-
+<?php
+if (isset($_SESSION['username'])) {
+} else {
+	header("location:login.php");
+}
+?>
 <style type="text/css">
 	.center {
 		margin: auto;
@@ -21,12 +26,7 @@ if (isset($_SESSION['username'])) {
 	}
 </style>
 
-<?php
-if (isset($_SESSION['username'])) {
-} else {
-	header("location:login.php");
-}
-?>
+
 
 <?php
 
@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row gutters">
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 							<h6 class="mt-3 mb-2 text-primary">Credential</h6>
