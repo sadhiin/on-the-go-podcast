@@ -93,6 +93,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
         echo '<h4 class="alert-heading">Well done! ' . $name . '</h4>';
         echo "<p>You have suggessfull sign up</p>";
         echo "</div>";
+
+        $user_data = [
+            'name'        =>    $name,
+            'username'    =>      $username,
+            'email'        =>    $email,
+            'password'  =>    $pass,
+            'phone'        =>      $phone,
+            "profilepicpath" => "upload\/1678588594.png"
+        ];
+        include "./controller/adduser.php";
+
+        
+
+
     }
 
     // if ($VALIDINPUT=true) {

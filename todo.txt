@@ -1,7 +1,7 @@
 nva bar [done]
 eidt profile
     change name [done]
-    change profilepicture 
+    change profilepicture
 MVC
     validation
     database
@@ -10,3 +10,42 @@ create db
 desing on undesined pages
 create page of dashborard
 after logedin homepage
+
+1. *Users*
+    - UserID (Primary Key)
+    - Username
+    - Password
+    - Email
+    - First Name
+    - Last Name
+2. *Podcasts*
+    - PodcastID (Primary Key)
+    - Title
+    - Description
+    - ImageURL
+    - ReleaseDate
+3. *Episodes*
+    - EpisodeID (Primary Key)
+    - PodcastID (Foreign Key)
+    - Title
+    - Description
+    - AudioURL
+    - ReleaseDate
+    - Duration
+4. *Categories*
+    - CategoryID (Primary Key)
+    - Name
+5. *PodcastCategories*
+    - PodcastID (Foreign Key)
+    - CategoryID (Foreign Key)
+6. *Subscriptions*
+    - UserID (Foreign Key)
+    - PodcastID (Foreign Key)
+    - DateSubscribed
+7. *Reviews*
+    - ReviewID (Primary Key)
+    - UserID (Foreign Key)
+    - PodcastID (Foreign Key)
+    - Rating
+    - Comment
+    - DatePosted
