@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
         ];
         include "./controller/adduser.php";
 
-        
+        addUser($new_data);
 
 
     }
@@ -290,11 +290,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
 
 
 <?php
-echo "<center>";
-echo "<br> <br>";
-echo "<br> <br>";
-echo "<br> <br>";
-echo "<br> <br>";
-include "./includes/footer.php";
-echo "</center>";
+    echo "<center>";
+    echo "<br> <br>";
+    echo "<br> <br>";
+    echo "<br> <br>";
+    echo "<br> <br>";
+    include "./includes/footer.php";
+    echo "</center>";
 ?>

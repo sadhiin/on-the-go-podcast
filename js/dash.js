@@ -1,28 +1,37 @@
-// Hide submenus
-$('#body-row .collapse').collapse('hide');
+document.addEventListener("DOMContentLoaded", function (event) {
+    const showNavbar = (toggleId, navId, bodyId, headerId) => {
+        const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId),
+            bodypd = document.getElementById(bodyId),
+            headerpd = document.getElementById(headerId);
 
-// Collapse/Expand icon
-$('#collapse-icon').addClass('fa-angle-double-left');
+        // Validate that all variables exist
+        if (toggle && nav && bodypd && headerpd) {
+            toggle.addEventListener("click", () => {
+                // show navbar
+                nav.classList.toggle("show");
+                // change icon
+                toggle.classList.toggle("bx-x");
+                // add padding to body
+                bodypd.classList.toggle("body-pd");
+                // add padding to header
+                headerpd.classList.toggle("body-pd");
+            });
+        }
+    };
 
-// Collapse click
-$('[data-toggle=sidebar-colapse]').click(function() {
-    SidebarCollapse();
-});
+    showNavbar("header-toggle", "nav-bar", "body-pd", "header");
 
-function SidebarCollapse () {
-    $('.menu-collapsed').toggleClass('d-none');
-    $('.sidebar-submenu').toggleClass('d-none');
-    $('.submenu-icon').toggleClass('d-none');
-    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+    /*===== LINK ACTIVE =====*/
+    const linkColor = document.querySelectorAll(".nav_link");
 
-    // Treating d-flex/d-none on separators with title
-    var SeparatorTitle = $('.sidebar-separator-title');
-    if ( SeparatorTitle.hasClass('d-flex') ) {
-        SeparatorTitle.removeClass('d-flex');
-    } else {
-        SeparatorTitle.addClass('d-flex');
+    function colorLink() {
+        if (linkColor) {
+            linkColor.forEach((l) => l.classList.remove("active"));
+            this.classList.add("active");
+        }
     }
+    linkColor.forEach((l) => l.addEventListener("click", colorLink));
 
-    // Collapse/Expand icon
-    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-}
+    // Your code to run since DOM is loaded and ready
+});
