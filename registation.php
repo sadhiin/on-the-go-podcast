@@ -88,12 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
     if (empty($nameErr) and empty($emailErr) and empty($usernameErr) and empty($passErr) and empty($phoneerr) and empty($termErr)) {
         $VALIDINPUT = true;
     }
-    if ($VALIDINPUT) {
-        echo '<div class="alert alert-success" role="alert">';
-        echo '<h4 class="alert-heading">Well done! ' . $name . '</h4>';
-        echo "<p>You have suggessfull sign up</p>";
-        echo "</div>";
 
+    if ($VALIDINPUT) {
         $user_data = [
             'name'        =>    $name,
             'username'    =>      $username,
@@ -104,63 +100,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
         ];
         include "./controller/adduser.php";
 
-        addUser($new_data);
-
-
-    }
-
-    // if ($VALIDINPUT=true) {
-    //     $set = [
-    //         'name'		=>    $_POST["name"],
-    //             'email'		=>    $_POST["email"],
-    //             'username'	=>	  $_POST["username"],
-    //             'pass'	    =>	  $_POST["pass"],
-    //             'phone'		=>	  $_POST["phone"],
-    //         'profilepicpath'=> 'profilepic/1.jpg'];
-
-    //     if (!file_exists('data.json')) {
-    //         @file_put_contents('data.json', '');
-    //     }
-
-    //     $data = json_decode(file_get_contents('data.json'), true);
-
-    //     foreach ($data as $key => $value) {
-    //         if ($value['email'] == $_POST['email'] && $value['username'] == $_POST['username']) {
-    //             $userExist = "User Already Exist!";
-    //             break;
-    //         }
-    //     }
-    //     if (empty($userExist)) {
-    //         $data[] = $set;
-    //         file_put_contents('data.json', json_encode($data));
-    //         header('Location: login.php');
-    //     }
-    // }
-
-    if ($VALIDINPUT) {
-
-        if (file_exists('data.json')) {
-
-            $current_data = file_get_contents('data.json');
-
-            $array_data = json_decode($current_data, true);
-            @$new_data = [
-                'name'        =>    $name,
-                'email'        =>    $email,
-                'username'    =>      $username,
-                'password'  =>    $pass,
-                'phone'        =>      $phone,
-                "profilepicpath" => "upload\/1678588594.png"
-                // $name = $email = $username = $pass = $phone = "";
-            ];
-            $array_data[] = $new_data;
-            $final_data = json_encode($array_data);
-
-            if (file_put_contents('data.json', $final_data)) {
-                $message = "<label class='text-success'>File Appended Successfully</p>";
-            }
-        } else {
-            $error = 'JSON File does not exits';
+        if(addUser($user_data)){
+            echo '<div class="alert alert-success" role="alert">';
+            echo '<h4 class="alert-heading">Well done! ' . $name . '</h4>';
+            echo "<p>You have suggessfull sign up</p>";
+            echo "</div>";
+        }else{
+            echo '<div class="alert alert-danger" role="alert">';
+            echo '<h4 class="alert-heading">Error..!</h4>';
+            echo "<p>Something Went wrong</p>";
+            echo '</div>';
         }
     }
 }
@@ -203,6 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                             <span class="error">*
                                                 <?php echo $usernameErr; ?>
                                             </span>
+                                            <div id="user-availability-status" class="text-center"></div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">

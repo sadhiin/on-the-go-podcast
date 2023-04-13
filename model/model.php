@@ -1,13 +1,10 @@
 <?php
-include "db.php";
+    include "db.php";
 
     $connection = db_conn();
 
-    if($connection){
-        echo "We are connected....";
-    }
-    else{
+    if(!$connection){
         die("error in db connection");
     }
 
-?>
+

@@ -22,7 +22,7 @@ if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
 
 
     foreach ($data as $key => $value) {
-      
+
       if ($value['username'] ==  $_SESSION['data']['username']) {
 
         $set = [
@@ -36,13 +36,13 @@ if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
         $data[$key] = $_SESSION['data'];
         file_put_contents('data.json', json_encode($data));
 
-        header('Location: viewprofile.php');
+        header('Location: dashboard.php');
         break;
       }
     }
   } else {
-    echo 'failed to upload file';
+    echo '<h1>failed to upload file</h1>';
   }
 } else {
-  echo 'uploaded file not a image';
+  echo '<h1>uploaded file not a image</h1>';
 }

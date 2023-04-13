@@ -4,7 +4,7 @@ $title = "On-the-Go";
 if (isset($_SESSION['username'])) {
     include "./includes/header_logeding.php";
 } else {
-    include "./includes/header.php";
+    header("location: index.php");
 }
 ?>
 <!-- <i class="fa-sharp fa-solid fa-arrow-right"></i> -->
@@ -146,6 +146,8 @@ if (isset($_SESSION['username'])) {
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+
 <?php
 include "./includes/footer.php";
 
