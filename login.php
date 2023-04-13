@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-    $title = "Login";
-    include "./includes/header.php";
-    if(isset($_SESSION['username'])){
-        header("location: app.onthegopodcast.php");
-    }
+$title = "Login";
+include "./includes/header.php";
+if (isset($_SESSION['username'])) {
+    header("location: app.onthegopodcast.php");
+}
 ?>
 <!-- login validation -->
 <style>
@@ -24,68 +24,52 @@ function take_input($d)
     return $d;
 }
 $username = $usernameErr = $email = $emailErr = $pass = $passErr = "";
-$isValid = true;
+$isValid = false;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
-    if (empty($_REQUEST["username"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    if (empty($_POST["username"])) {
         $usernameErr = "Username or email required";
     } else {
-        $username = take_input($_REQUEST["username"]);
-        //$email = take_input($_REQUEST["email"]);
+        $username = take_input($_POST["username"]);
+        //$email = take_input($_POST["email"]);
     }
 
     // password validaton
-    if (empty($_REQUEST['password'])) {
+    if (empty($_POST['password'])) {
         $passErr = "Password can not be empty.";
     } else {
-        $pass = $_REQUEST['password'];
+        $pass = $_POST['password'];
     }
-
+    if (empty($usernameErr) and empty($passErr)) {
+        $isValid = true;
+    }
     if ($isValid) {
-        $data = json_decode(file_get_contents('data.json'), true);
+        $user_data = [
+            'username'    =>      $username,
+            'password'  =>    $pass,
+        ];
 
-        if (is_array($data)) {
-            $message = "User not found";
+        include("./controller/authorize.php");
+        $reply = loginUser($user_data);
 
-            foreach ($data as $key => $value) {
-                if ($value['username'] == $_POST['username']) {
-                    if ($value['password'] == $_POST['password']) {
-                        $_SESSION['data'] = $value;
-                        $_SESSION['username'] = $username;
+        if ($reply['cnt'] > 0) {
+            if ($reply['row'] != null) {
+                $_SESSION['data'] = $reply['row'];
+                $_SESSION['username'] = $username;
+                if (isset($_POST["remember"])) {
 
-                        header("location: app.onthegopodcast.php");
-                        if(isset($_POST["remember"])){
-
-                            setcookie('username',$username, time() + (86400 * 30));
-                            setcookie('password',$pass, time() + (86400 * 30));
-                        }
-                    } else {
-                        $message = "Password does not match";
-                        break;
-                    }
+                    setcookie('username', $username, time() + (86400 * 30));
+                    setcookie('password', $pass, time() + (86400 * 30));
                 }
+                header("location: app.onthegopodcast.php");
             }
         } else {
-            $message = "User not found";
+            $message = "Usernmae or password don't match";
         }
         echo '<div class="alert alert-danger" role="alert">';
-        echo '<h4 class="alert-heading">'.$message. '</h4>';
+        echo '<h4 class="alert-heading">' . $message . '</h4>';
         echo "</div>";
     }
-    // echo "username: ".$_REQUEST['user']."<br> password: ".$_REQUEST["pass"]."<br> remeber: ".$_REQUEST['remember'];
-    // have to run the sql query for the vefiying the user information
-
-    // $query = "
-    //     SET @username = :username
-    //     SELECT * FROM user_db
-    //     WHERE ( username = @username OR email = @username)
-    //     AND password = :password
-    // ";
-
-    // $statement = $pdoObject->prepare($query);
-    // $statement->bindValue(":username", $login, PDO::PARAM_STR);
-    // $statement->bindValue(":password", $password, PDO::PARAM_STR);
-    // $statement->execute();
 }
 
 ?>
@@ -124,7 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_REQUEST['login'])) {
                             <label class="form-check-label" for="form2Example3">
                                 Remember me
                             </label>
-
                         </div>
                         <a href="./forgetpassword.php" class="text-body">Forgot password?</a>
                     </div>

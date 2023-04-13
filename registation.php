@@ -96,16 +96,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
             'email'        =>    $email,
             'password'  =>    $pass,
             'phone'        =>      $phone,
-            "profilepicpath" => "upload\/1678588594.png"
+            "profilepicpath" => "upload\/profile.png"
         ];
         include "./controller/adduser.php";
 
-        if(addUser($user_data)){
+        if (addUser($user_data)) {
             echo '<div class="alert alert-success" role="alert">';
             echo '<h4 class="alert-heading">Well done! ' . $name . '</h4>';
             echo "<p>You have suggessfull sign up</p>";
             echo "</div>";
-        }else{
+        } else {
             echo '<div class="alert alert-danger" role="alert">';
             echo '<h4 class="alert-heading">Error..!</h4>';
             echo "<p>Something Went wrong</p>";
@@ -240,11 +240,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
 
 
 <?php
-    echo "<center>";
-    echo "<br> <br>";
-    echo "<br> <br>";
-    echo "<br> <br>";
-    echo "<br> <br>";
-    include "./includes/footer.php";
-    echo "</center>";
+echo "<center>";
+echo "<br> <br>";
+echo "<br> <br>";
+echo "<br> <br>";
+echo "<br> <br>";
+include "./includes/footer.php";
+echo "</center>";
 ?>

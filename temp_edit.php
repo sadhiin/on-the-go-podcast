@@ -1,6 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['username'])) {
+    $title = "Edit Profile";
     include "./includes/dash_header.php";
 } else {
     header("Location: login.php");
@@ -69,7 +70,7 @@ if (isset($_SESSION['username'])) {
             $isValid = true;
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+                echo "geting the reqest";
 
                 #----- Name -----#
                 if (!isset($_POST['name']) || empty($_POST['name'])) {
@@ -114,24 +115,17 @@ if (isset($_SESSION['username'])) {
                 }
 
                 if ($isValid) {
-                    $data = json_decode(file_get_contents('data.json'), true);
+                    $setNewData = [
+                        'name'            => $_POST['name'],
+                        'email'            => $_POST['email'],
+                        'username'         => $_SESSION['data']['username'],
+                        'password'         => $_SESSION['data']['password'],
 
-                    foreach ($data as $key => $value) {
-                        if ($value['username'] == $_SESSION['data']['username']) {
-                            $set = [
-                                'name'            => $_POST['name'],
-                                'email'            => $_POST['email'],
-                                'username'         => $_SESSION['data']['username'],
-                                'password'         => $_SESSION['data']['password'],
-
-                                'profilepicpath'     => $_SESSION['data']['profilepicpath']
-                            ];
-                            $_SESSION['data'] = $set;
-
-                            $data[$key] = $_SESSION['data'];
-                            file_put_contents('data.json', json_encode($data));
-                            header('Location:viewprofile.php');
-                        }
+                        'profilepicpath'     => $_SESSION['data']['profilepicpath']
+                    ];
+                    if (updateUserInfo($setNewData)) {
+                        $_SESSION['data'] = $setNewData;
+                        header('Location:viewprofile.php');
                     }
                 }
             }
@@ -160,7 +154,7 @@ if (isset($_SESSION['username'])) {
                                     </div>
                                     <div class="about">
                                         <h5>About</h5>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur earum, temporibus quam suscipit autem perferendis neque, ea, delectus fugiat dolore et? Quasi itaque maxime magnam dignissimos voluptatum id rem ipsum.</p>
+                                        <p><?php echo $_SESSION['data']['user_about'] ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -169,58 +163,60 @@ if (isset($_SESSION['username'])) {
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                         <div class="card h-100">
                             <div class="card-body">
-                                <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <h6 class="mb-2 text-primary">Personal Details</h6>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="fullName">Full Name</label>
-                                            <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="name" value="<?= $_SESSION['data']['name'] ?>">
-                                            <span class="red"><?php echo $nameErr ?></span>
+                                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 class="mb-2 text-primary">Personal Details</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="fullName">Full Name</label>
+                                                <input type="text" class="form-control" id="fullName" placeholder="Enter full name" name="name" value="<?= $_SESSION['data']['name'] ?>">
+                                                <span class="red"><?php echo $nameErr ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="eMail">Email</label>
+                                                <input type="text" class="form-control" id="eMail" name="email" value="<?= $_SESSION['data']['email'] ?>" placeholder="Enter email ID">
+                                                <span class="red"><?php echo $emailErr ?></span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="eMail">Email</label>
-                                            <input type="text" class="form-control" id="eMail" name="email" value="<?= $_SESSION['data']['email'] ?>" placeholder="Enter email ID">
-                                            <span class="red"><?php echo $emailErr ?></span>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <h6 class="mt-3 mb-2 text-primary">Credential</h6>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="pass">Password</label>
-                                            <input type="password" class="form-control" id="pass" placeholder="Current Password">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <h6 class="mt-3 mb-2 text-primary">Credential</h6>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="pass">Password</label>
+                                                <input type="password" class="form-control" id="pass" placeholder="Current Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="newpass">New Password</label>
+                                                <input type="password" class="form-control" id="newpass" placeholder="New Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                            <div class="form-group">
+                                                <label for="repass">Confirm Password</label>
+                                                <input type="password" class="form-control" id="repass" placeholder="New Password">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="newpass">New Password</label>
-                                            <input type="password" class="form-control" id="newpass" placeholder="New Password">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="text-left">
+                                                <br>
+                                                <input type="button" id="cancle" name="cancle" value="Cancel" class="btn btn-outline-danger"></input>
+                                                <input type="button" id="submit" name="submit" value="Update" class="btn btn-outline-primary"></input>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="repass">Confirm Password</label>
-                                            <input type="password" class="form-control" id="repass" placeholder="New Password">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="text-left">
-                                            <br>
-                                            <button type="button" id="submit" name="cancle" value="Cancel" class="btn btn-outline-danger">Cancel</button>
-                                            <button type="button" id="submit" name="submit" value="Update" class="btn btn-outline-primary">Update</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
