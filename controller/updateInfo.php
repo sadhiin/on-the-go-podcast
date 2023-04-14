@@ -12,7 +12,8 @@ function updateUserInfo($data)
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
-            'profilepicpath' => $data['profilepicpath']
+            'profilepicpath' => $data['profilepicpath'],
+            'username' => $data['username']
         ]);
     } catch (PDOException $e) {
 

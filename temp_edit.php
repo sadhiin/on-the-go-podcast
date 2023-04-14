@@ -64,19 +64,21 @@ if (isset($_SESSION['username'])) {
         <h3>Edit Your Profile <?php echo $_SESSION['data']['name']; ?></h3>
         <div>
             <?php
-
-            $name = $email = $username = $gender = $dob = "";
-            $nameErr = $emailErr = $usernameErr = $genderErr = $dobErr = $message = "";
+            function take_input($d)
+            {
+                $d = trim($d);
+                $d = stripcslashes($d);
+                $d = htmlspecialchars($d);
+                return $d;
+            }
+            $name = $email = $pass = "";
+            $nameErr = $emailErr = $passErr = $message = "";
             $isValid = true;
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                echo "geting the reqest";
 
                 #----- Name -----#
-                if (!isset($_POST['name']) || empty($_POST['name'])) {
-                    $nameErr = "Name is required";
-                    $isValid = false;
-                } else {
+                if (isset($_POST['name'])) {
                     $name = $_POST['name'];
                     if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
                         $nameErr = "Only letters, whitespaces, - and ' are acceptable";
@@ -88,10 +90,7 @@ if (isset($_SESSION['username'])) {
                 }
 
                 #----- Email -----#
-                if (!isset($_POST['email']) || empty($_POST["email"])) {
-                    $emailErr = "Email is required";
-                    $isValid = false;
-                } else {
+                if (isset($_POST['email'])) {
                     $email = $_POST["email"];
                     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                         $emailErr = "Invalid email format";
@@ -99,32 +98,35 @@ if (isset($_SESSION['username'])) {
                     }
                 }
 
-                #----- User Name -----#
-                if (!isset($_POST['username']) || empty($_POST['username'])) {
-                    $usernameErr = "User Name is required";
-                    $isValid = false;
-                } else {
-                    $username = $_POST['username'];
-                    if (!preg_match("/^[a-zA-Z-0-9' ]*$/", $username)) {
-                        $usernameErr = "Only letters and white space are allowed";
+                if (isset($_POST['pass'])) {
+                    $pass = $_POST['pass'];
+
+                    if (!preg_match("/^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/", $pass)) {
+                        $passErr = "A-Z, a-Z 0-9 Upper-case Lower-case 8 digit long";
                         $isValid = false;
-                    } elseif (str_word_count($username) > 1) {
-                        $usernameErr = "User Name has to contain one word";
+                    }
+                    if (empty(take_input($_POST["repass"]))) {
+                        $passErr = "Confirm passworkd should not be empty.";
+                        $isValid = false;
+                    }
+                    if ($pass != take_input($_POST["repass"])) {
+                        $passErr = "Confirm password doesnot match.";
                         $isValid = false;
                     }
                 }
 
                 if ($isValid) {
                     $setNewData = [
-                        'name'            => $_POST['name'],
-                        'email'            => $_POST['email'],
+                        'name'            => (isset($name) ? $name : $_SESSION['data']['name']),
+                        'email'            => (isset($email) ? $email : $_SESSION['data']['email']),
                         'username'         => $_SESSION['data']['username'],
-                        'password'         => $_SESSION['data']['password'],
+                        'password'         => (isset($pass) ? $pass : $_SESSION['data']['password']),
 
                         'profilepicpath'     => $_SESSION['data']['profilepicpath']
                     ];
+
                     if (updateUserInfo($setNewData)) {
-                        $_SESSION['data'] = $setNewData;
+                        $_SESSION['data'] = getUser($_SESSION['data']['username']);
                         header('Location:viewprofile.php');
                     }
                 }
@@ -154,7 +156,7 @@ if (isset($_SESSION['username'])) {
                                     </div>
                                     <div class="about">
                                         <h5>About</h5>
-                                        <p><?php echo $_SESSION['data']['user_about'] ?></p>
+                                        <p><?php echo $_SESSION['data']['user_about']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -163,6 +165,7 @@ if (isset($_SESSION['username'])) {
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                         <div class="card h-100">
                             <div class="card-body">
+                                <!-- form added -->
                                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                                     <div class="row gutters">
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -191,19 +194,19 @@ if (isset($_SESSION['username'])) {
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="pass">Password</label>
-                                                <input type="password" class="form-control" id="pass" placeholder="Current Password">
+                                                <input type="password" class="form-control" id="pass" name="pass" placeholder="Current Password">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="newpass">New Password</label>
-                                                <input type="password" class="form-control" id="newpass" placeholder="New Password">
+                                                <input type="password" class="form-control" name="newpass" id="newpass" placeholder="New Password">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <label for="repass">Confirm Password</label>
-                                                <input type="password" class="form-control" id="repass" placeholder="New Password">
+                                                <input type="password" class="form-control" name="repass" id="repass" placeholder="New Password">
                                             </div>
                                         </div>
                                     </div>
@@ -211,8 +214,8 @@ if (isset($_SESSION['username'])) {
                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                             <div class="text-left">
                                                 <br>
-                                                <input type="button" id="cancle" name="cancle" value="Cancel" class="btn btn-outline-danger"></input>
-                                                <input type="button" id="submit" name="submit" value="Update" class="btn btn-outline-primary"></input>
+                                                <!-- <input type="button" id="cancle" name="cancle" value="Cancel" class="btn btn-outline-danger"></input> -->
+                                                <input type="submit" id="submit" name="submit" value="Update" class="btn btn-outline-primary"></input>
                                             </div>
                                         </div>
                                     </div>

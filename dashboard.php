@@ -1,6 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['username'])) {
+    $title = "Dashboard";
     include "./includes/dash_header.php";
 } else {
     header("Location: login.php");
