@@ -21,22 +21,14 @@
     <link rel="stylesheet" href="./includes/CSS/style.css">
     <!-- fontawesome kit -->
     <link rel="stylesheet" href="https://kit.fontawesome.com/4db96eb076.css" crossorigin="anonymous">
-    <style>
-        .bg-custom-1 {
-            background-color: #85144b;
-        }
 
-        .bg-custom-2 {
-            background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
-        }
-    </style>
 </head>
 
 <body>
     <header class="p-3 mb-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a class="navbar-brand brand" href="./index.php">
+                <a class="navbar-brand brand" href="./app.onthegopodcast.php">
                     <img src="./includes/logo.png" alt="Logo" width="40" height="35" class="d-inline-block align-text-top">
                     On-The-Go Podcast
                 </a>
@@ -67,8 +59,8 @@
                     error -->
                     <ul class="dropdown-menu text-small" style="">
                         <li><a class="dropdown-item" href="./dashboard.php">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="./editprofile.php">Editprofile</a></li>
-                        <li><a class="dropdown-item" href="./viewprofile.php">View Profile</a></li>
+                        <!-- <li><a class="dropdown-item" href="./editprofile.php">Editprofile</a></li>
+                        <li><a class="dropdown-item" href="./viewprofile.php">View Profile</a></li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>

@@ -12,6 +12,26 @@ desing on undesined pages
 create page of dashborard
 after logedin homepage
 
+2.	Feature List:
+
+In this project the “Admin” has the following features:
+•	Admin can review and approve podcasts.
+•	Revoke access of user
+•	Set any user as paid user
+
+In this project the “User” has the following features:
+
+•	Can listen to any free podcasts
+•	Can listen to paid podcast if user is subscribed to premium option
+•	Can comment on podcast
+•	Can like or dislike a podcast.
+•	Can make playlist.
+•	Can Subscribe favorite creators.
+•	Can update his/her own profile information.
+•	Can change his/her own password
+•	Can update his/her own profile picture
+
+
 1. *Users*
     - UserID (Primary Key)
     - Username
