@@ -11,7 +11,7 @@ function audio_uploader($passedfile)
     $file_ext = $file_ext[1];
 
     $extensions = array("mp3", "wav", "ogg");
-    $msg = ["err" => '', 'rtn' => true];
+    $msg = ["err" => '', 'rtn' => true, 'path' => ''];
     if (in_array($file_ext, $extensions) === false) {
         $msg['err'] = "extension not allowed, please choose a MP3, WAV, or OGG file.";
     }
@@ -24,6 +24,7 @@ function audio_uploader($passedfile)
         move_uploaded_file($file_tmp, $target_file);
         echo "File uploaded successfully.";
         $msg['rtn'] = true;
+        $msg['path'] = $target_file;
     } else {
         $msg['err'] = "somthing went worng";
         $msg['rtn'] = false;
@@ -34,18 +35,19 @@ function audio_uploader($passedfile)
 function thumbnail_uploder($passed)
 {
     $target_dir = "thumbnail/";
+    $res = ['rtn' => false, 'path' => ''];
     if (strpos($passed['type'], 'image/') !== false) {
-
         $ext = explode('.', $passed['name']);
         $ext = $ext[1];
-
         $moving_path = $target_dir . basename($passed["name"]) . '.' . $ext;
         if (move_uploaded_file($passed["tmp_name"], $moving_path)) {
-            return true;
+            $res['rtn'] = true;
+            $res['path'] = $moving_path;
         } else {
-            return false;
+            $res['rtn'] = false;
         }
     } else {
-        return false;
+        $res['rtn'] = false;
     }
+    return $res;
 }

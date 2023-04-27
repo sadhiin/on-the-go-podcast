@@ -19,6 +19,6 @@ VALUES (:username, :password, :email, :name)";
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-    $conn = null;
+    $connection = null;
     return true;
 }

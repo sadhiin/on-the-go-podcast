@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
     $uploder = audio_uploader($audio);
     $thamb = thumbnail_uploder($thum);
 
-    if ($uploder['rtn'] && $thamb) {
+    if ($uploder['rtn'] == true && $thamb['rtn'] == true) {
       $save_to_db = true;
     }
   } else {
@@ -76,12 +76,28 @@ if (isset($_POST['submit'])) {
     echo '</div></div>';
   }
 
-  if($save_to_db){
-    // upload the file to db....
+  if ($save_to_db) {
+    // the key of this 
+    $data = [
+      'title' => $podcast_title,
+      'description' => $podcast_dis,
+      'image' => $thamb['path'],
+      'date' => date('Y-m-d'),
+      'post_path' => $uploder['path']
+    ];
 
-
-
-    
+    include './controller/podcast.php';
+    if (addPodCast($data)) {
+      echo '<div class="alert alert-success" role="alert">';
+      echo '<h4 class="alert-heading">Podcast</h4>';
+      echo "<p>Successfully added</p>";
+      echo "</div>";
+    } else {
+      echo '<div class="alert alert-danger" role="alert">';
+      echo '<h4 class="alert-heading">Error..!</h4>';
+      echo "<p>Something Went-wrong</p>";
+      echo '</div>';
+    }
   }
 }
 
