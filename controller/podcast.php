@@ -1,8 +1,6 @@
 <?php
 include "./model/model.php";
 
-// function to add new user to the db
-
 function addPodCast($data)
 {
     $connection = db_conn();

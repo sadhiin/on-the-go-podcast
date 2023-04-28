@@ -59,12 +59,20 @@ if (isset($_POST['submit'])) {
   $podcast_dis = $_POST['description'];
   $audio = $_FILES['audio_file'];
   $thum = $_FILES['thumbnail'];
-  $save_to_db = true;
+  $save_to_db = false;
   include "file_handeler.php";
-  if (empty($audio) && empty($thum)) {
-    $uploder = audio_uploader($audio);
-    $thamb = thumbnail_uploder($thum);
+  //defining the variables for accessing later
+  $uploder=["err" => '', 'rtn' => false, 'path' => ''];
+  $thamb = ['rtn' => false, 'path' => ''];
 
+  if (empty($audio)==false && empty($thum) == false) {
+
+    $uploder = audio_uploader($audio); // return assos array with key err, rtn, path
+    $thamb = thumbnail_uploder($thum);
+    // print_r($uploder);
+    // print_r($thamb);
+    // var_dump($uploder);
+    // var_dump($thamb);
     if ($uploder['rtn'] == true && $thamb['rtn'] == true) {
       $save_to_db = true;
     }
@@ -77,7 +85,6 @@ if (isset($_POST['submit'])) {
   }
 
   if ($save_to_db) {
-    // the key of this 
     $data = [
       'title' => $podcast_title,
       'description' => $podcast_dis,
@@ -86,6 +93,7 @@ if (isset($_POST['submit'])) {
       'post_path' => $uploder['path']
     ];
 
+    // saving information to database.
     include './controller/podcast.php';
     if (addPodCast($data)) {
       echo '<div class="alert alert-success" role="alert">';
