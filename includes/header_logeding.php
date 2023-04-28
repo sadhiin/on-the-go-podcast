@@ -53,7 +53,7 @@
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="<?php echo $_SESSION['data']['profilepicpath'] ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="<?php echo $_SESSION['data']['profilepicpath'] ?>" alt="profile-picture" width="32" height="32" class="rounded-circle">
                     </a>
                     <!-- ignore this line
                     error -->
