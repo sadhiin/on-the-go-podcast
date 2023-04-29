@@ -41,7 +41,7 @@ if (isset($_SESSION['username'])) {
                     include 'includes/user/filesupload.php';
                     break;
                 case 'edit_post':
-                    include "./includes/edit_post.php";
+                    include "./includes/user/edit_post.php";
                     break;
                 case '100':
                     echo "another nice";

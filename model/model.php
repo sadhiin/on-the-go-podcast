@@ -22,3 +22,18 @@ function customeQuery($query, $params = array())
         return null;
     }
 }
+
+function customeQuery_NONRETURN($sql,$params = array())
+{
+    $pdo = db_conn();
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $pdo=null;
+        return true;
+    } catch (Exception $e) {
+        // die("Error in CustomeNonreturn");
+        echo "Erro in Non-return-custorm-query function";
+        return false;
+    }
+}
