@@ -1,29 +1,24 @@
 <?php
-    include "db.php";
+include "db.php";
 
-    $connection = db_conn();
+$connection = db_conn();
 
-    if(!$connection){
-        die("error in db connection");
+if (!$connection) {
+    die("error in db connection");
+}
+
+function customeQuery($query, $params = array())
+{
+    $conn = db_conn();
+    try {
+        $stmt = $conn->prepare($query);
+        $stmt->execute($params);
+
+        $conn = null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        // die("Error in CustomeQuery function");
+        return null;
     }
-
-
-    // function addUser($data)
-    // {
-    //     $connection = db_conn();
-    //     $insertUsers = "INSERT into users (username, password, email, name)
-    // VALUES (:username, :password, :email, :name)";
-    //     try {
-    //         $stmt = $connection->prepare($insertUsers);
-    //         $stmt->execute([
-    //             ':username' => $data['username'],
-    //             ':password' => $data['password'],
-    //             ':email' => $data['email'],
-    //             ':name' => $data['name'],
-    //         ]);
-    //     } catch (PDOException $e) {
-    //         echo $e->getMessage();
-    //     }
-    //     $connection = null;
-    //     return true;
-    // }
+}

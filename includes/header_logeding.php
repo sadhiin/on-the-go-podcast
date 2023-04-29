@@ -36,27 +36,20 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="./index.php" class="nav-link">Home</a></li>
                     <li>
-                        <a class="nav-link" aria-current="page" href="./dashboard.php">
-                            <?php
-                            if (isset($_SESSION['username'])) {
-                                echo "Welcome " . $_SESSION['data']['name'];
-                            }
-                            ?>
-                        </a>
+                        <a class="nav-link" aria-current="page" href="./dashboard.php">Dashboard </a>
                     </li>
                     <li><a href="./aboutus.php" class="nav-link ">About</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    <input type="search" class="form-control" id="" placeholder="Search..." aria-label="Search">
                 </form>
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?php echo $_SESSION['data']['profilepicpath'] ?>" alt="profile-picture" width="32" height="32" class="rounded-circle">
                     </a>
-                    <!-- ignore this line
-                    error -->
+
                     <ul class="dropdown-menu text-small" style="">
                         <li><a class="dropdown-item" href="./dashboard.php">Dashboard</a></li>
                         <!-- <li><a class="dropdown-item" href="./editprofile.php">Editprofile</a></li>

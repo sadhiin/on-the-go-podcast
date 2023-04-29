@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Player with Play/Pause Buttons</title>
+
+  <!-- Load the required scripts and stylesheets -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
+</head>
+<body>
+
+  <!-- Create an HTML5 audio element with the 'plyr' class -->
+  <audio id="player" controls>
+    <source src="audio_files/Pakistans REAL Situation Declining Economy  Terrorism.mp3" type="audio/mp3">
+  </audio>
+  <!-- Add Play and Pause buttons -->
+  <button id="playButton">Play</button>
+  <button id="pauseButton">Pause</button>
+
+
+  <!-- Load the Plyr library and initialize it -->
+  <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
+  <script>
+    const player = new Plyr('#player');
+
+    // Get the play and pause buttons
+    const playButton = document.getElementById("playButton");
+    const pauseButton = document.getElementById("pauseButton");
+
+    // Add event listeners to the buttons
+    playButton.addEventListener("click", function() {
+      player.play();
+    });
+
+    pauseButton.addEventListener("click", function() {
+      player.pause();
+    });
+  </script>
+
+</body>
+</html>

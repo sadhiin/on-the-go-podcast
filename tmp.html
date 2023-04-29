@@ -1,0 +1,58 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ngx-Plyr Demo</title> -->
+
+<!-- Load the required scripts and stylesheets -->
+<!-- <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
+</head>
+<body> -->
+
+<!-- Create an HTML5 audio element with the 'plyr' class -->
+<!-- <audio id="plyr" controls>
+    <source src="audio_files/Pakistans REAL Situation Declining Economy  Terrorism.mp3" type="audio/mp3">
+  </audio> -->
+
+<!-- Load the ngx-plyr library and initialize it -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/ngx-plyr@4.0.1/bundles/ngx-plyr.umd.min.js"></script>
+  <script>
+    const players = new Plyr('#plyr');
+  </script>
+
+</body>
+</html> -->
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>temp</title>
+  <script src="
+  https://cdn.jsdelivr.net/npm/ngx-plyr@4.0.1/bundles/ngx-plyr.umd.min.js
+  ">
+  </script>
+  <script>
+    const player = new Plyr('audio', {});
+
+    // Expose player so it can be used from the console
+    window.player = player;
+  </script>
+</head>
+
+<body>
+  <!-- <div class="container">
+    <audio crossorigin playsinline>
+      <source src="./audio_files/Snipers In War.mp3" type="audio/ogg">
+    </audio>
+  </div> -->
+  <!-- Plyr resources and browser polyfills are specified in the pen settings -->
+  <audio id="player" plyrType="audio" controls>
+    <source src="./audio_files/Snipers In War.mp3" type="audio/mp3" />
+    <!-- <source src="/path/to/audio.ogg" type="audio/ogg" /> -->
+  </audio>
+</body>
+
+</html>

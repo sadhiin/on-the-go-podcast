@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Item Audio Player</title>
+    <!-- Load the required scripts and stylesheets -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css">
+</head>
+
+<body>
+
+    <div class="cart-item" data-audio-src="audio_files/song.mp3">
+        <h2>Item Name</h2>
+        <audio class="plyr" controls>
+            <source src="audio_files/Every Indian Podcast Ever ft Dostcast  Salonayyy  Saloni Gaur.mp3.mp3"
+                type="audio/mp3">
+        </audio>
+        <button id="playButton">Play</button>
+        <button id="pauseButton">Pause</button>
+    </div>
+
+    <!-- Load the Plyr library and initialize it -->
+    <script src="https://cdn.plyr.io/3.6.2/plyr.js"></script>
+    <script>
+        const players = Array.from(document.querySelectorAll('.plyr')).map(p => new Plyr(p));
+
+        const cartItems = Array.from(document.querySelectorAll('.cart-item'));
+        cartItems.forEach(cartItem => {
+            const audioSrc = cartItem.dataset.audioSrc;
+            const audioElement = cartItem.querySelector('audio');
+            cartItem.addEventListener('click', () => {
+                audioElement.play();
+            });
+        });
+
+        const playButton = document.getElementById('palyButton')
+        const pauseButton = document.getElementById('pauseButton')
+        playButton.addEventListener("click", function () {
+            player.play();
+        });
+
+        pauseButton.addEventListener("click", function () {
+            player.pause();
+        });
+    </script>
+</body>
+
+</html>
