@@ -6,9 +6,11 @@ MVC
     validation
     database
     ....
-create db
-ajax
-create page of dashborard
+ajax [registation, search, validation]
+Uploders testimonial
+title, discription full show on hover mouse
+history on play
+
 
 2.	Feature List:
 

@@ -6,8 +6,8 @@ include "./model/model.php";
 function addUser($data)
 {
     $connection = db_conn();
-    $insertUsers = "INSERT into users (username, password, email, name)
-VALUES (:username, :password, :email, :name)";
+    $insertUsers = "INSERT into users (username, password, email, name, profilepicpath)
+VALUES (:username, :password, :email, :name, :profilepicpath)";
     try {
         $stmt = $connection->prepare($insertUsers);
         $stmt->execute([
@@ -15,6 +15,7 @@ VALUES (:username, :password, :email, :name)";
             ':password' => $data['password'],
             ':email' => $data['email'],
             ':name' => $data['name'],
+            ':profilepicpath'=>$data['profilepicpath'],
         ]);
     } catch (PDOException $e) {
         echo $e->getMessage();

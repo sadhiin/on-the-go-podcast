@@ -93,7 +93,7 @@ if (isset($_SESSION['username'])) {
 
                     if (updateUserInfo($setNewData)) {
                         $_SESSION['data'] = getUser($_SESSION['data']['username']);
-                        header('Location:viewprofile.php');
+                        header('Location: edit_profile.php');
                     }
                 }
             }

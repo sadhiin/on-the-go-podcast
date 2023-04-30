@@ -94,7 +94,7 @@
                                                                                             } ?>">
                                                 <div class="card-body">
                                                     <h4 class="card-title"><?php if ($i + 1 < count($qr_result)) {
-                                                                                echo substr($qr_result[$i + 0]['title'], 0, 28);
+                                                                                echo substr($qr_result[$i + 1]['title'], 0, 28);
                                                                             } ?></h4>
                                                     <p class="card-text"><?php if ($i + 1 < count($qr_result)) {
                                                                                 echo substr($qr_result[$i + 1]['description'], 0, 50) . "...";
@@ -114,11 +114,11 @@
                                         <div class="col-md-4 mb-3">
                                             <div class="card">
                                                 <img class="img-fluid" alt="100%x280" src="<?php if ($i + 1 < count($qr_result)) {
-                                                                                                echo $qr_result[$i + 0]['image'];
+                                                                                                echo $qr_result[$i + 2]['image'];
                                                                                             } ?>">
                                                 <div class="card-body">
                                                     <h4 class="card-title"><?php if ($i + 2 < count($qr_result)) {
-                                                                                echo substr($qr_result[$i + 0]['title'], 0, 28);
+                                                                                echo substr($qr_result[$i + 2]['title'], 0, 28);
                                                                             } ?></h4>
                                                     <p class="card-text"><?php if ($i + 2 < count($qr_result)) {
                                                                                 echo substr($qr_result[$i + 2]['description'], 0, 50) . "...";
@@ -184,7 +184,7 @@
                                                                                                 } ?>">
                                                     <div class="card-body">
                                                         <h4 class="card-title"><?php if ($i + 1 < count($qr_result)) {
-                                                                                    echo substr($qr_result[$i + 0]['title'], 0, 28);
+                                                                                    echo substr($qr_result[$i + 1]['title'], 0, 28);
                                                                                 } ?></h4>
                                                         <p class="card-text"><?php if ($i + 1 < count($qr_result)) {
                                                                                     echo substr($qr_result[$i + 1]['description'], 0, 50) . "...";
@@ -204,11 +204,11 @@
                                             <div class="col-md-4 mb-3">
                                                 <div class="card">
                                                     <img class="img-fluid" alt="100%x280" src="<?php if ($i + 1 < count($qr_result)) {
-                                                                                                    echo $qr_result[$i + 0]['image'];
+                                                                                                    echo $qr_result[$i + 2]['image'];
                                                                                                 } ?>">
                                                     <div class="card-body">
                                                         <h4 class="card-title"><?php if ($i + 2 < count($qr_result)) {
-                                                                                    echo substr($qr_result[$i + 0]['title'], 0, 28);
+                                                                                    echo substr($qr_result[$i + 2]['title'], 0, 28);
                                                                                 } ?></h4>
                                                         <p class="card-text"><?php if ($i + 2 < count($qr_result)) {
                                                                                     echo substr($qr_result[$i + 2]['description'], 0, 50) . "...";
