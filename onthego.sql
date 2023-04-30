@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2023 at 03:54 PM
+-- Generation Time: Apr 30, 2023 at 05:26 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -79,10 +79,13 @@ CREATE TABLE `podcasts` (
 INSERT INTO `podcasts` (`podcast_id`, `title`, `description`, `image`, `date`, `post_path`, `user_id`) VALUES
 (2, 'new podcast', 'dkskdslkdfs', 'thumbnail/img2.jpg.jpg', '2023-04-28', 'audio_files/Every Indian Podcast Ever ft Dostcast  Salonayyy  Saloni Gaur.mp3.mp3', 1),
 (3, 'dfsfds', 'sdfdsfdsf', 'thumbnail/img1.jpg', '2023-04-28', 'audio_files/Every Indian Podcast Ever ft Dostcast  Salonayyy  Saloni Gaur.mp3', 1),
-(4, 'upload form temp user', 'some description about the podcast. some description about the podcast. some description about the podcast. some description about the podcast. some description about the podcast. some description about the podcast. some description about the podcast.', 'thumbnail/img4.jpg', '2023-04-28', 'audio_files/Snipers In War.mp3', 2),
 (5, 'Another from temp user', 'some description about the podcast. some description about the podcast. some description about the podcast.', 'thumbnail/img6.jpg', '2023-04-28', 'audio_files/Suniel Shettys Advice To His SonInLaw KL Rahul shorts.mp3', 2),
 (6, 'Giving the advice for Pakistan ', 'Advice for Pakistan Advice for Pakistan Advice for Pakistan Advice for Pakistan Advice for Pakistan Advice for Pakistan Advice for Pakistan Advice for Pakistan', 'thumbnail/img3.jpg', '2023-04-28', 'audio_files/Pakistans REAL Situation Declining Economy  Terrorism.mp3', 1),
-(7, 'Suniel Shettys Advice', 'Suniel Shettys Advice ', 'thumbnail/img1.jpg', '2023-04-28', 'audio_files/Suniel Shettys Advice To His SonInLaw KL Rahul shorts.mp3', 1);
+(7, 'Suniel Shettys Advice', 'Suniel Shettys Advice ', 'thumbnail/img1.jpg', '2023-04-28', 'audio_files/Suniel Shettys Advice To His SonInLaw KL Rahul shorts.mp3', 1),
+(9, 'Talking about her X Factor', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla magni dignissimos tempora earum officia mollitia ratione deleniti laboriosam, expedita quam repudiandae minima nisi reprehenderit temporibus doloremque. Repellat voluptates dicta sequi!\r\nLorem', 'thumbnail/img (22).webp', '2023-04-29', 'audio_files/Barkha Singhs X Factor  BeerBiceps Shorts.mp3', 1),
+(10, 'Her Worst Interview', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla magni dignissimos tempora earum officia mollitia ratione deleniti laboriosam, expedita quam repudiandae minima nisi reprehenderit temporibus doloremque. Repellat voluptates dicta sequi!\r\nLorem', 'thumbnail/img (23).webp', '2023-04-29', 'audio_files/Truth Behind Pervez Musharraf  Her Worst Interview Was.mp3', 1),
+(11, 'Is Physical Attraction Really Important', 'Here is the description  Here is the description   Here is the description   Here is the description   Here is the description Here is the description .', 'thumbnail/img (10).webp', '2023-04-30', 'audio_files/Is Physical Attraction Really Important .mp3', 1),
+(12, 'Indian Believes in The Raj Sahmani', 'Here is the description  Here is the description  Here is the description Here is the description  Here is the description Here is the description ', 'thumbnail/img (22).webp', '2023-04-30', 'audio_files/India Believes in This  Raj Shamani shorts.mp3', 1);
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `name`, `profilepicpath`, `user_about`) VALUES
 (1, 'sadhin', '1q2w3eQ!', 'mydummymail66@gmail.com', 'SADHIN', 'upload/1681494573.webp', 'tell others about your self'),
-(2, 'temp', '123Asd!@#', 'mydummymail66@gmail.com', 'Temp User', 'upload/profile.png', 'tell others about yourself');
+(2, 'temp', '123Asd!@#', 'mydummymail66@gmail.com', 'Temp User', 'upload/profile.png', 'tell others about yourself'),
+(3, 'siddik', '1q2w3eQ!', 'siddik@mail.com', 'Siddik Abubakar', 'upload/1682824431.png', 'tell others about yourself');
 
 --
 -- Indexes for dumped tables
@@ -183,13 +187,13 @@ ALTER TABLE `episodes`
 -- AUTO_INCREMENT for table `podcasts`
 --
 ALTER TABLE `podcasts`
-  MODIFY `podcast_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `podcast_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
