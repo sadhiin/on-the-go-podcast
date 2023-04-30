@@ -13,7 +13,7 @@
             <div class="nav_list">
                 <a href="dashboard.php" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
                     <span class="nav_name">Dashboard</span></a>
-                <a href="temp_edit.php" class="nav_link">
+                <a href="edit_profile.php" class="nav_link">
                     <i class='bi bi-person-bounding-box'></i> <span class="nav_name">Edit Profile</span> </a>
                 <a href="dashboard.php?source=fileupload" class="nav_link"> <i class='bi bi-upload nav_icon'></i>
                     <span class="nav_name">Upload Audio</span> </a>
