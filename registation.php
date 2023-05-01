@@ -3,6 +3,92 @@ $logofile = "./logo.php";
 $title = "SignUp";
 include "./includes/header.php";
 ?>
+
+<script>
+    function validateForm() {
+        let name = document.getElementById("name")
+        let email = document.getElementById("email")
+        let username = document.getElementById("username")
+        let password = document.getElementById("pass")
+        let confirm_password = document.getElementById("repass")
+        let phone = document.getElementById("contract")
+        let gender = document.getElementById("gender")
+        let term = document.getElementById("term").checked;
+
+        // Name validation
+        if (name.value == "") {
+            alert("Name is required");
+            return false;
+        }
+        if (!/^[a-zA-Z-' ]*$/.test(name)) {
+            alert("Only letters and spaces are allowed");
+            return false;
+        }
+
+        // Email validation
+        if (email.value == "") {
+            alert("Email is required");
+            return false;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            alert("Invalid email format");
+            return false;
+        }
+
+        // Username validation
+        if (username.value == "") {
+            alert("Username is required");
+            return false;
+        }
+        if (!/^[a-zA-Z0-9]+(?:[\w -]*[a-zA-Z0-9]+)*$/.test(username)) {
+            alert("Only alphanumeric, spaces, and dashes are allowed");
+            return false;
+        }
+
+        // Password validation
+        if (password.value == "") {
+            alert("Password is required");
+            return false;
+        }
+        if (!(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&]).{8,}/.test(password))) {
+            alert("Password must be at least 8 characters, contain at least one lowercase letter, one uppercase letter, one number, and one special character");
+            return false;
+        }
+
+        // Confirm password validation
+        if (confirm_password.value == "") {
+            alert("Confirm password is required");
+            return false;
+        }
+        if (confirm_password != password) {
+            alert("Confirm password does not match password");
+            return false;
+        }
+
+        // Phone number validation
+        if (phone.value == "") {
+            alert("Phone number is required");
+            return false;
+        }
+        if (!/^\d{11}$/.test(phone)) {
+            alert("Phone number must be 11 digits");
+            return false;
+        }
+
+        // Gender validation
+        if (gender == "") {
+            alert("Gender is required");
+            return false;
+        }
+
+        // Terms and conditions validation
+        if (!term) {
+            alert("Terms and conditions must be accepted");
+            return false;
+        }
+        return true;
+    }
+</script>
 <style>
     .error {
         color: #FF0000;
@@ -127,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                                <form class="mx-1 mx-md-4" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form class="mx-1 mx-md-4" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" onsubmit="return validateForm()">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -145,26 +231,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="username" id="username" value="<?php if ($VALIDINPUT == false) {
-                                                                                                        echo $username;
-                                                                                                    } ?>" class="form-control" />
+                                            <input type="text" name="username" id="username" onkeyup="checkUsername(this.value)" value="<?php if ($VALIDINPUT == false) {
+                                                                                                                                            echo $username;
+                                                                                                                                        } ?>" class="form-control" />
                                             <label class="form-label" for="username">Username</label>
                                             <span class="error">*
                                                 <?php echo $usernameErr; ?>
                                             </span>
+                                            <span class="error" id="usernamecheck"></span>
                                             <div id="user-availability-status" class="text-center"></div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" name="email" id="form3Example3c" value="<?php if ($VALIDINPUT == false) {
-                                                                                                            echo $email;
-                                                                                                        } ?>" class="form-control" />
-                                            <label class="form-label" for="form3Example3c">Your Email</label>
+                                            <input type="text" name="email" id="email" onblur="chekcEmail(email)" value="
+                                            <?php if ($VALIDINPUT == false) {
+                                                echo $email;
+                                            } ?>" class="form-control" />
+                                            <label class="form-label" for="email">Your Email</label>
                                             <span class="error">*
                                                 <?php echo $emailErr; ?>
                                             </span>
+                                            <span class="error" id="emailAvailable"></span>
                                         </div>
                                     </div>
 
@@ -232,13 +321,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['register'])) {
     </div>
 </section>
 
+<script>
+    // username avilablity
+    function checkUsername(str) {
+        if (str.length == 0) {
+            document.getElementById("usernamecheck").innerHTML = "";
+            return;
+        } else {
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                document.getElementById("usernamecheck").innerHTML = this.responseText;
+            }
+            xmlhttp.open("GET", "./controller/checkUser.php?query=" + str);
 
+            console.log("request sended for ececking the username");
 
+            xmlhttp.send();
+            console.log("Sended");
+        }
+    }
 
+    function chekcEmail(mailid) {
+        const emailInput = document.getElementById('email');
+        const email = emailInput.value;
+        const regex = /\S+@\S+\.\S+/;
+        if (!regex.test(email)) {
+            document.getElementById('emailAvailable').innerHTML = 'Please enter a valid email address.'
+            emailInput.focus();
+        }
 
+        if (email == "") {
+            document.getElementById('emailAvailable').innerHTML = "";
+        } else {
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                document.getElementById('emailAvailable').innerHTML = this.responseText;
+            }
+            xmlhttp.open("GET", "./controller/checkUser.php?email=" + str);
 
+            console.log("request sended for ececking the username");
 
-
+            xmlhttp.send();
+            console.log("Sended");
+        }
+    }
+</script>
 <?php
 echo "<center>";
 echo "<br> <br>";

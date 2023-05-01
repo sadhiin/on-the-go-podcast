@@ -7,6 +7,29 @@ if (isset($_SESSION['username'])) {
     header("location: app.onthegopodcast.php");
 }
 ?>
+
+<script>
+    function validateForm() {
+        let username = document.getElementById("floatingInputname");
+        let password = document.getElementById("floatingPassword");
+
+        if (username.value === "") {
+            alert("Username is required");
+            username.focus();
+            username.style.borderColor = "red";
+            return false;
+        }
+
+        if (password.value === "") {
+            alert("Password is required");
+            password.style.borderColor = "red";
+            password.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
 <!-- login validation -->
 <style>
     .error {
@@ -82,11 +105,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 <img src="./images/draw2.webp" class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" onsubmit="return validateForm()">
                     <!-- Email input -->
                     <div class="form-floating mb-3">
-                        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Password">
-                        <label for="floatingInput">Username or Email</label>
+                        <input type="text" name="username" class="form-control" id="floatingInputname" placeholder="Password">
+                        <label for="floatingInputname">Username or Email</label>
                         <span class="error">*
                             <?php echo $usernameErr; ?>
                         </span>

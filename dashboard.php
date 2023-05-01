@@ -58,10 +58,7 @@ if (isset($_SESSION['username'])) {
                     header("Location: dashboard.php");
                 }
             }
-
-
             ?>
-
         </div>
     </div>
     <!--Container Main end-->
@@ -72,5 +69,4 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link type="'application/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </body>
-
 </html>
