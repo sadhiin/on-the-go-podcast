@@ -22,3 +22,9 @@ VALUES (:title, :description, :image, :date, :post_path, :user_id)";
     $connection = null;
     return true;
 }
+
+function get_user_history($user_id)
+{
+    $history_query = "SELECT P.podcast_id, title, image,post_path FROM podcasts AS P, history AS H WHERE H.user_id = $user_id AND P.podcast_id = H.podcast_id";
+    return customeQuery($history_query);
+}

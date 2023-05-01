@@ -59,9 +59,7 @@
                                     <div class="row">
 
                                         <div class="col-md-4 mb-3">
-                                            <!-- <a href="<?php if ($i + 0 < count($qr_result)) {
-                                                                echo $qr_result[$i + 0]['post_path'];
-                                                            } ?>"> -->
+
                                             <div class="card">
                                                 <img class="img-fluid" alt="100%x280" src="<?php if ($i + 0 < count($qr_result)) {
                                                                                                 echo $qr_result[$i + 0]['image'];
@@ -74,18 +72,17 @@
                                                                                 echo substr($qr_result[$i + 0]['description'], 0, 50) . "...";
                                                                             } ?>
                                                     </p>
-                                                    <audio id="player1" controls>
+                                                    <p class="card-text" id="server-msg1"></p>
+                                                    <audio id="player1" controls onclick="trackHistory('player1','server-msg1', <?php echo $qr_result[$i + 0]['podcast_id']; ?>)">
                                                         <source src="<?php if ($i + 0 < count($qr_result)) {
                                                                             echo $qr_result[$i + 0]['post_path'];
                                                                         } ?>" type="audio/mp3">
                                                     </audio>
                                                     <!-- Add Play and Pause buttons -->
-                                                    <button class="btn btn-primary" id="playButton1">Play</button>
+                                                    <button class="btn btn-primary" id="playButton1" onclick="trackHistory('player1','server-msg1', <?php echo $qr_result[$i + 0]['podcast_id']; ?>)">Play</button>
                                                     <button class="btn btn-primary" id="pauseButton1">Pause</button>
                                                 </div>
-
                                             </div>
-                                            <!-- </a> -->
                                         </div>
                                         <div class="col-md-4 mb-3">
                                             <div class="card">
@@ -98,14 +95,16 @@
                                                                             } ?></h4>
                                                     <p class="card-text"><?php if ($i + 1 < count($qr_result)) {
                                                                                 echo substr($qr_result[$i + 1]['description'], 0, 50) . "...";
-                                                                            } ?></p>
-                                                    <audio id="player2" controls>
+                                                                            } ?>
+                                                    </p>
+                                                    <p class="card-text" id="server-msg2"></p>
+                                                    <audio id="player2" controls onclick="trackHistory('player2','server-msg2', <?php echo $qr_result[$i + 1]['podcast_id']; ?>)">
                                                         <source src="<?php if ($i + 1 < count($qr_result)) {
                                                                             echo $qr_result[$i + 1]['post_path'];
                                                                         } ?>" type="audio/mp3">
                                                     </audio>
                                                     <!-- Add Play and Pause buttons -->
-                                                    <button class="btn btn-primary" id="playButton2">Play</button>
+                                                    <button class="btn btn-primary" id="playButton2" onclick="trackHistory('player2', 'server-msg2',<?php echo $qr_result[$i + 1]['podcast_id']; ?>)">Play</button>
                                                     <button class="btn btn-primary" id="pauseButton2">Pause</button>
 
                                                 </div>
@@ -122,14 +121,16 @@
                                                                             } ?></h4>
                                                     <p class="card-text"><?php if ($i + 2 < count($qr_result)) {
                                                                                 echo substr($qr_result[$i + 2]['description'], 0, 50) . "...";
-                                                                            } ?></p>
-                                                    <audio id="player3" controls>
+                                                                            } ?>
+                                                    </p>
+                                                    <p class="card-text" id="server-msg3"></p>
+                                                    <audio id="player3" controls onclick="trackHistory('player3','server-msg3',<?php echo $qr_result[$i + 2]['podcast_id']; ?>)">
                                                         <source src="<?php if ($i + 2 < count($qr_result)) {
                                                                             echo $qr_result[$i + 2]['post_path'];
                                                                         } ?>" type="audio/mp3">
                                                     </audio>
                                                     <!-- Add Play and Pause buttons -->
-                                                    <button class="btn btn-primary" id="playButton3">Play</button>
+                                                    <button class="btn btn-primary" id="playButton3" onclick="trackHistory('player3','server-msg3',<?php echo $qr_result[$i + 2]['podcast_id']; ?>)">Play</button>
                                                     <button class="btn btn-primary" id="pauseButton3">Pause</button>
 
                                                 </div>
@@ -164,13 +165,14 @@
                                                                                     echo substr($qr_result[$i + 0]['description'], 0, 50) . "...";
                                                                                 } ?>
                                                         </p>
-                                                        <audio id="player4" controls>
+                                                        <p class="card-text" id="server-msg4"></p>
+                                                        <audio id="player4" controls onclick="trackHistory('player4',<?php echo $qr_result[$i + 0]['podcast_id']; ?>)">
                                                             <source src="<?php if ($i + 0 < count($qr_result)) {
                                                                                 echo $qr_result[$i + 0]['post_path'];
                                                                             } ?>" type="audio/mp3">
                                                         </audio>
                                                         <!-- Add Play and Pause buttons -->
-                                                        <button class="btn btn-primary" id="playButton4">Play</button>
+                                                        <button class="btn btn-primary" id="playButton4" onclick="trackHistory('player4','server-msg4',<?php echo $qr_result[$i + 0]['podcast_id']; ?>)">Play</button>
                                                         <button class="btn btn-primary" id="pauseButton4">Pause</button>
                                                     </div>
 
@@ -188,14 +190,17 @@
                                                                                 } ?></h4>
                                                         <p class="card-text"><?php if ($i + 1 < count($qr_result)) {
                                                                                     echo substr($qr_result[$i + 1]['description'], 0, 50) . "...";
-                                                                                } ?></p>
-                                                        <audio id="player5" controls>
+                                                                                } ?>
+                                                        </p>
+                                                        <p class="card-text" id='server-msg5'></p>
+
+                                                        <audio id="player5" controls onclick="trackHistory('player5','server-msg5',<?php echo $qr_result[$i + 1]['podcast_id']; ?>)">
                                                             <source src="<?php if ($i + 1 < count($qr_result)) {
                                                                                 echo $qr_result[$i + 1]['post_path'];
                                                                             } ?>" type="audio/mp3">
                                                         </audio>
                                                         <!-- Add Play and Pause buttons -->
-                                                        <button class="btn btn-primary" id="playButton5">Play</button>
+                                                        <button class="btn btn-primary" id="playButton5" onclick="trackHistory('player5','server-msg5',<?php echo $qr_result[$i + 1]['podcast_id']; ?>)">Play</button>
                                                         <button class="btn btn-primary" id="pauseButton5">Pause</button>
 
                                                     </div>
@@ -212,14 +217,17 @@
                                                                                 } ?></h4>
                                                         <p class="card-text"><?php if ($i + 2 < count($qr_result)) {
                                                                                     echo substr($qr_result[$i + 2]['description'], 0, 50) . "...";
-                                                                                } ?></p>
-                                                        <audio id="player6" controls>
+                                                                                } ?>
+                                                        </p>
+                                                        <p class="card-text" id='server-msg6'></p>
+
+                                                        <audio id="player6" controls onclick="trackHistory('player6','server-msg6',<?php echo $qr_result[$i + 2]['podcast_id']; ?>)">
                                                             <source src="<?php if ($i + 2 < count($qr_result)) {
                                                                                 echo $qr_result[$i + 2]['post_path'];
                                                                             } ?>" type="audio/mp3">
                                                         </audio>
                                                         <!-- Add Play and Pause buttons -->
-                                                        <button class="btn btn-primary" id="playButton6">Play</button>
+                                                        <button class="btn btn-primary" id="playButton6" onclick="trackHistory('player6','server-msg6',<?php echo $qr_result[$i + 2]['podcast_id']; ?>)">Play</button>
                                                         <button class="btn btn-primary" id="pauseButton6">Pause</button>
 
                                                     </div>
@@ -267,81 +275,10 @@
                 </ul>
             </nav>
         </div>
-
-
-
     </section>
     <script src=" https://cdn.plyr.io/3.6.2/plyr.js"></script>
-    <script>
-        const player1 = new Plyr('#player1');
-        const player2 = new Plyr('#player2');
-        const player3 = new Plyr('#player3');
-        const player4 = new Plyr('#player4');
-        const player5 = new Plyr('#player5');
-        const player6 = new Plyr('#player6');
+    <script src="./js/podcasthome.js"></script>
 
-        // Get the play and pause buttons
-        const playButton1 = document.getElementById("playButton1");
-        const pauseButton1 = document.getElementById("pauseButton1");
-
-        const playButton2 = document.getElementById("playButton2");
-        const pauseButton2 = document.getElementById("pauseButton2");
-
-        const playButton3 = document.getElementById("playButton3");
-        const pauseButton3 = document.getElementById("pauseButton3");
-
-        const playButton4 = document.getElementById("playButton4");
-        const pauseButton4 = document.getElementById("pauseButton4");
-
-        const playButton5 = document.getElementById("playButton5");
-        const pauseButton5 = document.getElementById("pauseButton5");
-
-        const playButton6 = document.getElementById("playButton6");
-        const pauseButton6 = document.getElementById("pauseButton6");
-
-        // Add event listeners to the buttons
-        playButton1.addEventListener("click", function() {
-            player1.play();
-        });
-        pauseButton1.addEventListener("click", function() {
-            player1.pause();
-        });
-
-        playButton2.addEventListener("click", function() {
-            player2.play();
-        });
-        pauseButton2.addEventListener("click", function() {
-            player2.pause();
-        });
-
-        playButton3.addEventListener("click", function() {
-            player3.play();
-        });
-        pauseButton3.addEventListener("click", function() {
-            player3.pause();
-        });
-
-        playButton4.addEventListener("click", function() {
-            player4.play();
-        });
-        pauseButton4.addEventListener("click", function() {
-            player4.pause();
-        });
-
-        playButton5.addEventListener("click", function() {
-            player5.play();
-        });
-        pauseButton5.addEventListener("click", function() {
-            player5.pause();
-        });
-
-        playButton6.addEventListener("click", function() {
-            player6.play();
-        });
-        pauseButton6.addEventListener("click", function() {
-            player6.pause();
-        });
-    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../includes/CSS/player.css">

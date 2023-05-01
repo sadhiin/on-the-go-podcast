@@ -1,15 +1,16 @@
-<h3>Edit Uploads</h3>
+<h3>Uploaded</h3>
 <?php
 include_once("./controller/podcastLoder.php");
-if (isset($_GET['delete'])) {
-    $deleted_id = $_GET['delete'];
-    echo "Geting delete request" .$_get['delete']."";
 
-    // if (customeQuery_NONRETURN("DELETE FROM podcasts WHERE podcast_id = {$deleted_id} ")) {
+// if (isset($_GET['delete'])) {
+//     $deleted_id = $_GET['delete'];
+//     // echo "Geting delete request" .$_get['delete']."";
 
-    //     header("Location: dashboard.php?source=edit_post");
-    // }
-}
+//     // if (customeQuery_NONRETURN("DELETE FROM podcasts WHERE podcast_id = {$deleted_id} ")) {
+
+//     //     header("Location: dashboard.php?source=edit_post");
+//     // }
+// }
 
 
 ?>
@@ -41,8 +42,8 @@ if (isset($_GET['delete'])) {
             echo "<td>$post_date</td>";
 
 
-            echo "<td><a href='includes\user\post_action.php?action=update&p_id=$post_id'>Edit</a></td>";
-            echo "<td><a href='includes\user\post_action.php?action=delete&p_id=$post_id'>Delete</a></td>";
+            // echo "<td><a href='post_action.php?action=update&p_id=$post_id'>Edit</a></td>";
+            // echo "<td><a href='post_action.php?action=delete&p_id=$post_id'>Delete</a></td>";
             // echo '<td><button type="submit" name="edit_btn" class="btn btn-outline-warning">Edit</button</td>';
             // echo '<td><button type="submit" name="delete_btn" class="btn btn-outline-danger">Delete</button></td>';
             echo "</tr>";

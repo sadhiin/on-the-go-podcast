@@ -50,6 +50,16 @@ if (isset($_SESSION['username'])) {
                     include './includes/user/history.php';
                     break;
             }
+
+            if(isset($_GET['delete'])){
+                $id = $_GET['delete'];
+                if (customeQuery_NONRETURN("DELETE FROM history WHERE podcast_id = $id")) {
+
+                    header("Location: dashboard.php");
+                }
+            }
+
+
             ?>
 
         </div>
