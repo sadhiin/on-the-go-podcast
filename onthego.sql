@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2023 at 05:26 AM
+-- Generation Time: May 02, 2023 at 05:38 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -53,8 +53,18 @@ CREATE TABLE `episodes` (
 
 CREATE TABLE `history` (
   `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL
+  `podcast_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`user_id`, `podcast_id`) VALUES
+(1, 5),
+(1, 5),
+(1, 7),
+(1, 7);
 
 -- --------------------------------------------------------
 
@@ -145,7 +155,7 @@ ALTER TABLE `episodes`
 --
 ALTER TABLE `history`
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `post_id` (`post_id`);
+  ADD KEY `post_id` (`podcast_id`);
 
 --
 -- Indexes for table `podcasts`
@@ -210,7 +220,7 @@ ALTER TABLE `episodes`
 --
 ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `podcasts` (`podcast_id`);
+  ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`podcast_id`) REFERENCES `podcasts` (`podcast_id`);
 
 --
 -- Constraints for table `podcasts`
